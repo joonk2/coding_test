@@ -1,18 +1,19 @@
-n = int(input())
-cnt = 0
+sugar = int(input())
+bag = 0
 
-while True:
-    if n % 5 == 0:
-        cnt += n // 5
-        print(cnt)
-        break
-    n -= 3
-    cnt += 1
+while sugar > 0:
+  if sugar % 5 == 0:
+    bag += (sugar // 5)
+    print(bag)
+    break
+
+  sugar -= 3
+  bag += 1
+
+  if sugar == 0:
+    print(bag)
+    break
     
-    if n == 0:
-        print(cnt)
-        break
-        
-    if n < 3:
-        print(-1)
-        break
+  elif sugar < 3:
+    print(-1) 
+    break
