@@ -1,5 +1,5 @@
 # N회 만큼 명령을 수행한다
-# 단순반복작업으로 인해 시간 초과가 난다면 sys를 활용해보자
+# 단순반복작업으로 인해 시간 초과가 난다면 sys를 input에 저장해주자
 
 import sys
 input = sys.stdin.readline
