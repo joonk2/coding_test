@@ -1,15 +1,16 @@
-def solution(N):
-  room = 1
-  cnt = 1
-
-  if N == 1:
-    return '1'
-  
-  while N > room:
-    room += (cnt*6)
-    cnt += 1
-  
-  return cnt
-
 N = int(input())
+
+def solution(N):
+  if N==1:
+    return 1
+
+  room=1
+  layer=1
+
+  while room < N:
+    room += (6*layer)
+    layer += 1
+  
+  return layer
+
 print(solution(N))
