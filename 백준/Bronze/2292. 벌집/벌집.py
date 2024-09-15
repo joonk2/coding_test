@@ -1,16 +1,27 @@
+# 5층 + 0.3
+# 1
+# 6
+# 12
+# 18
+# 24
+# +9
+
+
+import sys
+input = sys.stdin.readline
 N = int(input())
 
 def solution(N):
-  if N==1:
-    return 1
+    room = 1
+    cnt = 1
 
-  room=1
-  layer=1
+    if N == 1:
+        return '1'
+    
+    while N > room:
+        room += (cnt * 6)
+        cnt += 1
 
-  while room < N:
-    room += (6*layer)
-    layer += 1
-  
-  return layer
+    return cnt
 
 print(solution(N))
