@@ -16,8 +16,8 @@ input = sys.stdin.readline
 T = int(input())
 
 for i in range(T):
-    dp_0 = [0] * 41
-    dp_1 = [0] * 41
+    dp_0 = [0] * 41 # 0이 몇 번 호출되는지 저장
+    dp_1 = [0] * 41 # 1이 몇 번 호출되는지 저장
     dp_0[0] = 1
     dp_1[1] = 1
     
