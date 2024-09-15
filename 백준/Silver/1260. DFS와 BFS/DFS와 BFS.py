@@ -1,3 +1,9 @@
+# 순서
+# 1. 그래프를 0으로 채우고, 방문을 전부 False로 채운다 
+# 2. 그래프 정보를 입력한다
+# 3. DFS 코드 짠다
+# 4. BFS 작동을 위해 다시 visited 초기화 하고 bfs 코드 짜자
+
 from collections import deque
 
 N, M, V = map(int, input().split())
@@ -16,9 +22,9 @@ bfs_visited = [False] * (N + 1)  # bfs의 방문기록
 def dfs(V):
     dfs_visited[V] = True  # 해당 V값 방문처리
     print(V, end=" ")
-    for i in range(1, N + 1):
-        if not dfs_visited[i] and graph[V][i]:  # 만약 i값을 방문하지 않았고 V와 연결이 되어 있다면
-            dfs(i)  # 해당 i 값으로 dfs를 돈다.(더 깊이 탐색)
+    for next_node in range(1, N + 1):
+        if not dfs_visited[next_node] and graph[V][next_node]:  # 만약 next_node를 방문하지 않았고, 연결이 되어있다면
+            dfs(next_node)  # 해당 next_node로 dfs를 돈다.(더 깊이 탐색)
 
 
 
@@ -29,10 +35,10 @@ def bfs(V):
     while q:  # q가 빌때까지 돈다.
         V = q.popleft()  # 큐에 있는 첫번째 값 꺼낸다.
         print(V, end=" ")  # 해당 값 출력
-        for i in range(1, N + 1):  # 1부터 N까지 돈다
-            if not bfs_visited[i] and graph[V][i]:  # 만약 해당 i값을 방문하지 않았고 V와 연결이 되어 있다면
-                q.append(i)  # 그 i 값을 추가
-                bfs_visited[i] = True  # i 값을 방문처리
+        for next_node in range(1, N + 1):  # 1부터 N까지 돈다
+            if not bfs_visited[next_node] and graph[V][next_node]: 
+                q.append(next_node) # next_node 추가
+                bfs_visited[next_node] = True  # next_node 방문 처리
 
 
 dfs(V)
