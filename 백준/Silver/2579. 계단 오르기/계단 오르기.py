@@ -1,7 +1,8 @@
-# 계단 밟기 최댓값
+# 계단의 각 칸은 1,2,3,4,5,6
 # 한 계단 or 두 계단
 # 계단 갯수 <= 300
 # 4번째 계단 밟기 --> 124 134 24
+# https://daimhada.tistory.com/181
 
 import sys
 input = sys.stdin.readline
