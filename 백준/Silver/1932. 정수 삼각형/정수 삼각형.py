@@ -6,11 +6,11 @@ dp = []
 for i in range(n):
     dp.append(list(map(int, input().split())))
 
-# print(dp)   테스트
-# print(dp[1][0]) 테스트
+# print(dp)
+# print(dp[1][0])
 
-for i in range(1, n): # 행
-    for j in range(0, i+1): # 열
+for i in range(1, n): #행
+    for j in range(0, i+1): #열
         if j == 0:
             dp[i][0] += dp[i-1][0]
         elif j == i:
