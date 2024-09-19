@@ -11,7 +11,7 @@ generated_num = set()
 for i in range(1, 10001):
     for j in str(i): # 360
         i += int(j) # 360 + 3 + 6 + 0
-    generated_num.add(i)
+    generated_num.add(i) # 이거 tab눌러서 뒤에 줄맞춤하면 363, 366, 369 다 추가함 (그럼 안됨)
 
 self_number = sorted(num_list - generated_num)
 for i in self_number:
