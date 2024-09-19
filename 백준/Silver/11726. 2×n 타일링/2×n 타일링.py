@@ -1,3 +1,5 @@
+# https://velog.io/@j3beom/%EB%B0%B1%EC%A4%80-11726%EB%B2%88-2xn-%ED%83%80%EC%9D%BC%EB%A7%81-Python-DP
+
 import sys
 input = sys.stdin.readline
 n = int(input())
