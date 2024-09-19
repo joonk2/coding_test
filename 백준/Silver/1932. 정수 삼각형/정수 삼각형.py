@@ -7,10 +7,10 @@ for i in range(n):
     dp.append(list(map(int, input().split())))
 
 # print(dp)
-# print(dp[1][0])
+# print(dp[2][0])
 
-for i in range(1, n): #행
-    for j in range(0, i+1): #열
+for i in range(1, n): # 행
+    for j in range(0, i+1): # 열 (표를 그려보면 다음행마다 열이 1칸씩 증가됨)
         if j == 0:
             dp[i][0] += dp[i-1][0]
         elif j == i:
