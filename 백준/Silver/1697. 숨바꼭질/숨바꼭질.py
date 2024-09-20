@@ -1,3 +1,4 @@
+# https://www.youtube.com/watch?v=O8K5A9ojrVw
 # 1. 문제를 읽고 입출력 예제를 통해서 먼저 풀어본다
 # 2. bfs(시작, 끝) 그리고 q와 v 생성
 # 3. q에 시작 넣어주고 초기데이터 1로 설정
