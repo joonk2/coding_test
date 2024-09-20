@@ -25,3 +25,17 @@ def solution(N):
     return cnt
 
 print(solution(N))
+
+
+# N = int(input())
+# room = 1
+# cnt = 1
+
+# if N == 1:
+#     print(1)
+
+# while N > room:
+#     room += (cnt * 6)
+#     cnt += 1
+
+# print(cnt)
