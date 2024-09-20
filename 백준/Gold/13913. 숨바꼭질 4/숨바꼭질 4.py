@@ -21,7 +21,7 @@ def bfs(s, e):
                 if v[next] == 0:
                     q.append(next)
                     v[next] = v[c]+1
-                    shortcut[next] = c # 방문 안했을때는 현재위치c가 제일 최신위치다
+                    shortcut[next] = c # 이따 경로 추적을 위해 바로 직전 위치를 늘 최신화한다
 
                 elif v[next] == v[c]+1:
                     q.append(next)
