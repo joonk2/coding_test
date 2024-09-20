@@ -17,23 +17,23 @@ def bfs(s, e):
     q.append(s)
     v[s] = 1
 
+    min_time = 0
+
     while q:
         c = q.popleft()
         if c == e:
-            return v[c]-1
+            min_time = v[c]-1
+            return min_time
         
         # 3방향 범위내(0~200000), 미방문
         for next in (c-1, c+1, c*2):
             if 0 <= next <= 200000:
                 if v[next] == 0:
                     q.append(next)
-                    v[next] = v[c] + 1
-                    
+                    v[next] = v[c]+1
+
     # 디버깅용(만약 -1이 나오면 땡)
     return -1
-                
-        
-
 
 N, K = map(int, input().split())
 ans = bfs(N, K)
