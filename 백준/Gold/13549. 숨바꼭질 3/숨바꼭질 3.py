@@ -1,3 +1,5 @@
+# 수빈이만 동생을 찾는 것이기 때문에 범위는 당연히 100000
+
 from collections import deque
 
 def bfs(s, e):
