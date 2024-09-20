@@ -21,7 +21,7 @@ def bfs(s, e):
                 if v[next] == 0:
                     q.append(next)
                     v[next] = v[c]+1
-                    shortcut[next] = c # 경로 역추적을 위한 빌드업(직전 위치 최신화)
+                    shortcut[next] = c # 경로 역추적을 위한 빌드업(직전 위치 기록)
                     
     return '다시해라 임마' # 디버깅
 
