@@ -15,7 +15,7 @@ dp[3] = max(dp[2], wine[1]+wine[3], wine[2]+wine[3])
 
 for j in range(4, n+1):
     dp[j] = max(dp[j-3] + wine[j-1] + wine[j], dp[j-2] + wine[j], dp[j-1])
-    # j=4, 5 대입하면 코드가 100% 이해될 것이야
+    # j = 4, 5 대입하면 코드가 100% 이해될 것이야
 
 
 print(dp[n])
