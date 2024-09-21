@@ -1,3 +1,7 @@
+# https://www.youtube.com/watch?v=HvtAz_wo_S8
+# [0] 10 -4 3 1 5 6 -35 12 21 -1
+# 위는 [0]을 추가하여 인덱스 0 ~ 10인데 범위로 인덱스 1, n+1까지 조정가능
+
 import sys
 
 input = sys.stdin.readline
