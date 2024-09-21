@@ -40,18 +40,6 @@ def bfs(s, e):
 
 
 
-def upsidedown_path(s, e, shortcut):
-    way = []
-    c = e
-    while c != s:
-        way.append(c)
-        c = shortcut[c] # 역추적
-    way.append(s)
-
-    return way[::-1]
-
-
-
 
 
 N, K = map(int, input().split())
