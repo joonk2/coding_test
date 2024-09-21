@@ -36,7 +36,7 @@ def bfs(s, e):
                 v[c+1] = v[c] + 1
                 
 
-    return "이 글 나오면 니 땡"
+    return "이 글 나오면 니 로직 땡"
 
 
 
