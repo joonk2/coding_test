@@ -33,6 +33,8 @@ def bfs(s, e):
                 v[c+1] = v[c] + 1
                 q.append(c+1)
 
+    return "이 글 나오면 니 땡"
+
 
 
 def upsidedown_path(s, e, shortcut):
