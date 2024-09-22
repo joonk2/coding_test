@@ -9,12 +9,12 @@
 
 def solve():
     N = 9
-    num = sum(dwarf) - 100
+    target_num = sum(dwarf) - 100
 
     # N개 중에 2개 뽑는 모든 조합
     for i in range(N-1):
         for j in range(i+1, N): 
-            if dwarf[i] + dwarf[j] == num:
+            if dwarf[i] + dwarf[j] == target_num:
                 return dwarf[i], dwarf[j]
 
 dwarf = [int(input()) for _ in range(9)]
