@@ -6,6 +6,7 @@
 #✅n개 중에 2개 뽑는 알고리즘
 #    for i in range(N-1):
 #        for j in range(i+1, N)
+# 반복 조합을 피하기 위해 i[7]까지만 선택, j[8]까지 다
 
 def solve():
     N = 9
