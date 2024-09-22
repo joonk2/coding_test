@@ -1,3 +1,4 @@
+# https://www.youtube.com/watch?v=c38slnsLRk4
 # 9난장이 키 합 132
 # 7난장이 합 100
 # 즉 2 난장이의 합이 32가 되는 것을 찾아서 빼자 
