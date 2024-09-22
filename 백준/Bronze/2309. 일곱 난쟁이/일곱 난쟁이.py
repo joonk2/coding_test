@@ -1,25 +1,30 @@
-# https://www.youtube.com/watch?v=c38slnsLRk4
-# 9난장이 키 합 132
-# 7난장이 합 100
-# 즉 2 난장이의 합이 32가 되는 것을 찾아서 빼자 
+# 1. 입력은 9 난장이 키를 입력한다.
+# 2. 찾는 난장이들 키의 합은 32로 2마리다
+# (중복 선택이 없는 조합 알고리즘을 짜자)
 
-#✅n개 중에 2개 뽑는 알고리즘
-#    for i in range(N-1):
-#        for j in range(i+1, N)
-# 반복 조합을 피하기 위해 i[7]까지만 선택, j[8]까지 다
+# 3. 출력은 난장이 키의 합 100 기준으로 오름차순
 
+
+
+# 2-1
 def solve():
     N = 9
-    target_num = sum(dwarf) - 100
-
-    # N개 중에 2개 뽑는 모든 조합
+    target_num = sum(dwarf)-100
+    
+    # 2가지 조합(중복x)    N(N-1) / 2
     for i in range(N-1):
-        for j in range(i+1, N): 
+        for j in range(i+1, N):
             if dwarf[i] + dwarf[j] == target_num:
                 return dwarf[i], dwarf[j]
 
+# 1
 dwarf = [int(input()) for _ in range(9)]
-n, m = solve() # 7명에 포함되지 않는 2명 찾기
+
+# 2-2 출력
+n, m = solve()
 for d in sorted(dwarf):
     if d != n and d != m:
+
+
+        # 3
         print(d)
