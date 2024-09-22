@@ -20,6 +20,6 @@ def solve():
 
 dwarf = [int(input()) for _ in range(9)]
 n, m = solve() # 7명에 포함되지 않는 2명 찾기
-for i in sorted(dwarf):
-    if i != n and i != m:
-        print(i)
+for d in sorted(dwarf):
+    if d != n and d != m:
+        print(d)
