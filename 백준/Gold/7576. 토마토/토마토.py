@@ -62,6 +62,7 @@ def bfs():
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
 
+            # x, y 행 열
             if 0 <= nx < n and 0 <= ny < m and graph[nx][ny] == 0:
                 q.append((nx, ny))
                 graph[nx][ny] = graph[x][y] + 1
