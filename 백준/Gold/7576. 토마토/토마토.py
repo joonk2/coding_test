@@ -46,37 +46,36 @@ def bfs():
     q = deque([])
     v = [ [0] * m for _ in range(n)]
 
-    # 첫 노드 입력
+    # 첫 노드 시작
     for i in range(n):
         for j in range(m):
             if graph[i][j] == 1:
                 q.append((i, j))
     
-
+    
     while q:
         cx, cy = q.popleft()
 
-        # 방향
+        # 4방향
         dx = [-1,1,0,0]
         dy = [0,0,-1,1]
-
         for i in range(4):
             nx = cx + dx[i]
             ny = cy + dy[i]
 
-            # x, y 행 열
-            if 0 <= nx < n and 0 <= ny < m and graph[nx][ny] == 0:
+            if  0 <= nx < n and 0 <= ny < m and graph[nx][ny] == 0:
                 q.append((nx,ny))
                 graph[nx][ny] = graph[cx][cy] + 1
-
+                v[nx][ny] = 1
 
 
 
 
 # 1. 첫줄 입력, 둘째줄 입력, bfs함수 실행
 m, n = map(int, input().split())
-graph = [list(map(int, input().split())) for _ in range(n)]
+graph =  [list(map(int, input().split())) for _ in range(n)]
 bfs()
+
 
 # 2. 결과 출력
 # 만약, 저장될 때부터 모든 토마토가 익어있는 상태이면 0을 출력해야 하고,
@@ -89,4 +88,4 @@ for i in range(n):
             exit(0)
         result = max(result, graph[i][j])
 
-print(result - 1)
+print(result -1 )
