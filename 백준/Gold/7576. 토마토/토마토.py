@@ -74,13 +74,14 @@ def bfs():
 # 1
 m, n = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(n)]
-bfs()
+bfs() # bfs 탐방
 
 
+# 만약 bfs 탐방 후에도 익지 않은 토마토가 남아있다면
 result = 0
 for i in range(n):
     for j in range(m):
-        if graph[i][j] == 0:  # 익지 않은 토마토가 있다면
+        if graph[i][j] == 0: 
             print(-1)
             exit(0)
         result = max(result, graph[i][j])  # 최대 일수 계산
