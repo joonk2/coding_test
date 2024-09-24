@@ -41,7 +41,8 @@
 
 from collections import deque
 
-# 2. BFS 함수
+# 3. 함수
+
 def bfs():
     q = deque([])
     v = [[0] * m for _ in range(n)]
@@ -71,11 +72,14 @@ def bfs():
 
 
 
-# 1
+# 1. 입력, 함수
+
 m, n = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(n)]
 bfs() # bfs 탐방
 
+
+# 2. 출력 
 
 # 만약 bfs 탐방 후에도 익지 않은 토마토가 남아있다면
 result = 0
