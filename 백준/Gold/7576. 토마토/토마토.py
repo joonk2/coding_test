@@ -39,7 +39,7 @@
 
 
 
-# bfs 함수
+# bfs 함수       x, y  행 열    nx n   ny m
 from collections import deque
 
 def bfs():
