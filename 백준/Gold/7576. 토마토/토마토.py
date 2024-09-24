@@ -70,7 +70,7 @@ def bfs():
 
 
 
-# 1. 첫줄 입력, 둘째줄 입력, bfs함수 실행
+# 1. 첫줄 입력(열, 행), 둘째줄 입력, bfs함수 실행
 m, n = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(n)]
 bfs()
