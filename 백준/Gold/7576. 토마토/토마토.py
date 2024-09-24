@@ -46,9 +46,7 @@ def bfs():
     v = [ [0] * m for _ in range(n)]
     q = deque([])
 
-    dx = [-1,1,0,0]
-    dy = [0,0,-1,1]
-
+    # 첫 노드
     for i in range(n):
         for j in range(m):
             if graph[i][j] == 1:
@@ -58,6 +56,9 @@ def bfs():
         x, y = q.popleft()
 
         # 4방향
+        dx = [-1,1,0,0]
+        dy = [0,0,-1,1]
+        
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
 
