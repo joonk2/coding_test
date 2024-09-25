@@ -1,0 +1,16 @@
+SELECT ID, EMAIL, FIRST_NAME, LAST_NAME
+FROM DEVELOPERS 
+WHERE 
+(SKILL_CODE & (SELECT CODE
+              FROM SKILLCODES
+              WHERE NAME = 'Python'   
+              )
+) >= 1
+OR
+(SKILL_CODE & (SELECT CODE
+              FROM SKILLCODES
+              WHERE NAME = 'C#'   
+              )
+) >= 1
+
+ORDER BY ID  ASC;
