@@ -4,18 +4,28 @@
 # 1/4, 2/3, 3/2, 4/1
 # 5/1, 4/2, 3/3, 2/4, 1/5
 
+# 줄위치 신경쓰자, N > line 루프가 풀리면 if ~ else는 while에 종속되지 않고 작동
 
-X = int(input())
-line = 1  
-while X > line:
-    X -= line  
-    line += 1  
 
-if line % 2 == 0:
-    top = X
-    bottom = line - X + 1
-else:
-    top = line - X + 1
-    bottom = X
+N = int(input())
 
-print(f'{top}/{bottom}')
+def converter(N):
+    line = 1
+    
+    while N > line:
+        N -= line
+        line += 1
+
+    if line % 2 == 0:
+        top = N
+        bottom = line - N + 1
+
+    else:
+        top = line - N + 1
+        bottom = N
+
+    return top, bottom
+
+
+top, bottom = converter(N)
+print(f"{top}/{bottom}")
