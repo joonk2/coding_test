@@ -7,25 +7,23 @@
 # 줄위치 신경쓰자, N > line 루프가 풀리면 if ~ else는 while에 종속되지 않고 작동
 
 
-N = int(input())
+X = int(input())
 
-def converter(N):
+def converter(X):
     line = 1
     
-    while N > line:
-        N -= line
+    while X > line:
+        X -= line
         line += 1
 
     if line % 2 == 0:
-        top = N
-        bottom = line - N + 1
-
+        top = X
+        bottom = line - X + 1
     else:
-        top = line - N + 1
-        bottom = N
-
+        top = line - X + 1
+        bottom = X
+    
     return top, bottom
 
-
-top, bottom = converter(N)
-print(f"{top}/{bottom}")
+top, bottom = converter(X)
+print(f'{top}/{bottom}')
