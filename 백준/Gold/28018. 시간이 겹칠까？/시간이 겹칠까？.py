@@ -1,20 +1,24 @@
-import sys
+# 누적합
+# s=1, e=3 초기에는 1 대입, 맨 끝+1 에는 -1을 대입해서
+# --> 이후의 리스트를 보자    즉 4시부터는 작업이 없게 된다
+# [0, 1, 0, 0, -1]  ---> [0, 1, 1, 1, 0]
+
+
 N = int(input())
 
-in_time = [0] * 1000001
-out_time = [0] * 1000001
-D = [0] * 1000001
+time = [0]*1000002
 
-for _ in range(N):
-    a, b = map(int, sys.stdin.readline().split())
-    in_time[a] += 1
-    out_time[b] += 1
+for i in range(N):
+    s, e = map(int, input().split())
+    time[s] += 1
+    time[e+1] += -1
+    
+for i in range(1, len(time)):
+    time[i] += time[i-1]
 
-for i in range(1, 1000001):
-    D[i] = D[i - 1] + in_time[i] - out_time[i - 1]
+count_hour = int(input())
 
-Q = int(sys.stdin.readline().rstrip())
-Qlist = [int(x) for x in sys.stdin.readline().split()]
+hour_list = list(map(int, input().split()))
 
-for q in Qlist:
-    print(D[q])
+for i in range(count_hour):
+    print(time[hour_list[i]])
