@@ -10,8 +10,8 @@ b = set()
 for j in range(M):
     b.add(input())
 
-res = sorted(list(a&b))  # 같은말이다  $$ a \cap b $$
-
+res = sorted(list(a&b))   # 같은 말이다 $$ a \cap b $$
 print(len(res))
+
 for r in res:
     print(r)
