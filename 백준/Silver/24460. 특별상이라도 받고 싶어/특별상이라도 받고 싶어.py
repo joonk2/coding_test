@@ -16,6 +16,7 @@ def recursion(arr, N):
             recursion(bottom_left, N//2), recursion(bottom_right, N//2)]
     temp.sort()
 
+    # top_left, top_right, bottom_left, bottom_right의 각 인덱스 1번 temp에 할당 --> 최종 temp의 index(1) 반환
     return temp[1]
 
 print(recursion(arr, N))
