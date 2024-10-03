@@ -2,6 +2,7 @@
 # 현재값과 이전 값을 비교해 각 자리마다 cnt를 적용해주자
 # 만약 현재값 < 이전값이라면 다시 위로 for문 순회하자
 # --> [1,2, ,3, ,4]
+# 최종적으로는 max값 출력
 
 import sys
 input = sys.stdin.readline
