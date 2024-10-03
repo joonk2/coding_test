@@ -29,14 +29,17 @@ N = int(input())
 
 time = [0] * 1000002
 
+# 1. 누적합 세팅
 for i in range(N):
     s, e = list(map(int, input().strip().split()))
     time[s] += 1
     time[e+1] += -1
 
+# 2. 누적합 적용
 for j in range(1, len(time)):
     time[j] += time[j-1]
 
+# 3. 횟수 계산
 Q = int(input())
 hour_list = list(map(int, input().strip().split()))
 
