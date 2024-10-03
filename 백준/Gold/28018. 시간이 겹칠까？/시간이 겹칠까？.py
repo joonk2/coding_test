@@ -13,6 +13,7 @@
 N = int(input())
 time = [0] * 1000002
 
+# 1 누적합
 for i in range(N):
     s, e = list(map(int, input().split()))
     time[s] += 1
@@ -21,6 +22,7 @@ for i in range(N):
 for j in range(1, len(time)):
     time[j] += time[j-1]
 
+# 2 cnt
 cnt_hour = int(input())
 hour_list = list(map(int, input().split()))
 
