@@ -1,8 +1,11 @@
+# U와 C, D와 P를 카운트하는 변수
+# 출력결과에 += U 혹은 DP
+
 import math
 
 V = input()
 
-# U와 C, D와 P를 카운트하는 변수
+
 count_uc, count_dp = 0, 0
 
 for s in V:
