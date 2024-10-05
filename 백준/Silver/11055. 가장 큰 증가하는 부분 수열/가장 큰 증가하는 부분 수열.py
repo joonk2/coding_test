@@ -18,4 +18,4 @@ for i in range(2, N+1):
         if arr[i] > arr[j]:
             dp[i] = max(dp[i], dp[j]+arr[i])
 
-print(max(dp))
+print(max(dp[1:]))
