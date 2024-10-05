@@ -16,7 +16,7 @@ for _ in range(N):
             # 만약 문자 두개가 다르고
             # 앞의 문자가 뒤 문자부터 마지막 인덱스 안에 또 등장한다면
             elif word[i-1] in word[i:]:  
-                break # 다음 조건으로 넘어간다
+                break # 다음 반복문으로 넘어간다
 
             #만약 위의 반복문 break없이 다돌고 마지막 인덱스까지 왔다면
             if i == len(word)-1:
