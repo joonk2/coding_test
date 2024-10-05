@@ -1,3 +1,10 @@
+# case 1) 1자리라면 무조건 그룹단어
+
+# case 2-1) 2자리 이상일 때 전 인덱스의 문자와 그 뒤 인덱스 문자 같을 때 --> pass
+# case 2-2) 2자리 이상일 때 전 인덱스의 문자가 뒤의 범위에서 나올 때 --> break
+
+# case 3) 위의 조건 확인 후 i가 마지막 index면 cnt += 1
+
 import sys
 input = sys.stdin.readline
 N = int(input())
