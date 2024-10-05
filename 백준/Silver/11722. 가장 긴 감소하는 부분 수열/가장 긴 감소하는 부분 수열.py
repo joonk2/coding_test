@@ -1,3 +1,5 @@
+# 답은 [0] + [1,1,2,2,2,3] --> 3
+
 N = int(input())
 arr = [0] + list(map(int, input().strip().split()))
 dp = [1] * (N+1)
