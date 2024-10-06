@@ -50,3 +50,42 @@ for _ in range(T):
                 dfs(graph, i, j)
                 cnt_worm += 1
     print(cnt_worm)
+
+
+
+
+# ------------------- BFS ---------------------------
+
+# import sys
+# from collections import deque
+# input = sys.stdin.readline
+# # 2. bfs 
+# def bfs(graph, x, y):
+#     q = deque([])
+#     q.append((x,y))
+#     graph[x][y] = 0 # 방문 처리(배추 심은 위치)
+#     while q:
+#         cx, cy = q.popleft()
+#         for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+#             nx = cx+dx
+#             ny = cy+dy
+#             if  0 <= nx < M and 0 <= ny < N and graph[nx][ny] == 1:
+#                 q.append((nx,ny))
+#                 graph[nx][ny] = 0
+
+
+
+# T = int(input())
+# for _ in range(T):
+#     M, N, K = list(map(int, input().strip().split()))
+#     graph = [[0]*N for _ in range(M)]
+#     cnt_worm = 0
+#     for _ in range(K):
+#         X, Y = list(map(int, input().strip().split()))
+#         graph[X][Y] = 1
+#     for i in range(M):
+#         for j in range(N):
+#             if graph[i][j] == 1:
+#                 bfs(graph, i, j)
+#                 cnt_worm += 1
+#     print(cnt_worm)
