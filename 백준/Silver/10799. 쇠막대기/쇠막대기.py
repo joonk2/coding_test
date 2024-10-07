@@ -1,3 +1,5 @@
+# https://hgk5722.tistory.com/48
+
 import sys
 input = sys.stdin.readline
 s = input()
