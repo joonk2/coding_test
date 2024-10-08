@@ -14,11 +14,7 @@
 import sys
 input = sys.stdin.readline
 
-
-
-
 dp = [0] * (1001)
-
 dp[1] = 1
 
 for i in range(2, 1001):
@@ -28,11 +24,7 @@ for i in range(2, 1001):
         dp[i] = dp[i-1] + dp[i//2]
 
 
-
-
-
 T = int(input())
-ans = []
 for _ in range(T):
     n = int(input())
     print(dp[n])
