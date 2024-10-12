@@ -13,7 +13,6 @@ input = sys.stdin.readline
 N = int(input())  # 방의 개수
 M = int(input())  # 빌런의 행동 횟수
 
-# 초기 설정은 벽이 전부 연결이 안된 것으로 ㄱㄱ
 wall = [1] * (N + 1)  
 
 for _ in range(M):
