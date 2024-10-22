@@ -29,7 +29,7 @@ def bfs(x, y):
                     graph[nx][ny][wall] = graph[x][y][wall] + 1
                     q.append((nx, ny, wall))
 
-                # 벽이 있는 경우 (아직 벽을 부수지 않은 상태에서 부수기)
+                # 벽 있고, 벽 부순적 없고, 벽을 부순 상태로 그 위치를 방문한 적이 없을 때
                 elif arr[nx][ny] == 1 and wall == 0 and graph[nx][ny][1] == 0:
                     graph[nx][ny][1] = graph[x][y][0] + 1
                     q.append((nx, ny, 1))
