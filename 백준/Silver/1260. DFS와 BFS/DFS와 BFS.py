@@ -1,13 +1,13 @@
-from collections import deque
 import sys
+from collections import deque
 input = sys.stdin.readline
-sys.setrecursionlimit(10**3)
+
 
 def dfs(V):
     dfs_v[V] = 1
-    print(V, end= " ")
+    print(V, end = " ")
     for n in range(1, N+1):
-        # dfs_v의 next_node를 방문 안했고 graph[V]의 다음 간선이 존재하면
+        # 만약 dfs_v의 next_node를 방문 안했고, graph[V]의 간선이 존재하면
         if dfs_v[n] == 0 and graph[V][n] == 1:
             dfs(n)
 
@@ -20,11 +20,14 @@ def bfs(V):
     while q:
         V = q.popleft()
         print(V, end = " ")
+
         for n in range(1, N+1):
-            # bfs_v의 next_node를 방문 안했고 graph[V]의 다음 간선이 존재하면
+            # 만약 bfs_v의 next_node를 방문 안했고, graph[V]의 간선이 존재하면
             if bfs_v[n] == 0 and graph[V][n] == 1:
                 q.append(n)
                 bfs_v[n] = 1
+
+
 
 
 N, M, V = list(map(int, input().strip().split()))
@@ -33,7 +36,6 @@ for _ in range(M):
     x, y = list(map(int, input().strip().split()))
     graph[x][y] = 1
     graph[y][x] = 1
-
 
 dfs_v = [0]*(N+1)
 bfs_v = [0]*(N+1)
