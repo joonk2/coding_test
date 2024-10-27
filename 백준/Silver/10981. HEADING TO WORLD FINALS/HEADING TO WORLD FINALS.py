@@ -1,15 +1,17 @@
-n, k = map(int, input().split())
-info = {}
-for _ in range(n):
-    univ, name, pros, pen = input().split()
-    pros = int(pros)
-    pen = int(pen)
-    temp = info.get(univ, [None, 0, float('inf')])
-    # 대학별 최고 문제 해결 수가 많은 팀 혹은 동일한 해결 수 중 패널티가 적은 팀 선택
-    if temp[1] < pros or (temp[1] == pros and temp[2] > pen):
-        info[univ] = [name, pros, pen]
-# 문제 해결 수는 내림차순, 패널티는 오름차순으로 정렬
-result = sorted(info.values(), key=lambda x: (-x[1], x[2]))
-# 상위 k개의 팀 출력
-for i in range(k):
-    print(result[i][0])
+import sys
+input = sys.stdin.readline
+N,K = map(int, input().strip().split())
+data = []
+for _ in range(N):
+    univ, team, solved, penalty = list(map(str, input().split()))
+    data.append((univ, team, int(solved), int(penalty)))
+
+
+data.sort(key = lambda x: (-x[2], x[3]))
+ans = []
+for i in range(N):
+    if len(ans) == K:
+        break
+    if data[i][0] not in ans:
+        print(data[i][1])
+        ans.append(data[i][0])
