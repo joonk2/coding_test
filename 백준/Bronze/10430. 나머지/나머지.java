@@ -1,0 +1,24 @@
+import java.util.StringTokenizer;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+        // A, B, C 값 입력
+        int A = Integer.parseInt(st.nextToken());
+        int B = Integer.parseInt(st.nextToken());
+        int C = Integer.parseInt(st.nextToken());
+
+        // 연산 출력
+        System.out.println((A+B) % C);
+        System.out.println((A%C + B%C) % C);
+        System.out.println((A*B) % C);
+        System.out.println((A%C * B%C) % C);
+
+        
+    }
+}
