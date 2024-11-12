@@ -9,6 +9,6 @@ public class Main {
         double A = Double.parseDouble(input[0]);
         double B = Double.parseDouble(input[1]);
 
-        System.out.println(A/B);
+        System.out.println(A / B);
     }
 }
