@@ -25,7 +25,7 @@ public class Main {
             }
         }
         
-        // 2번 이상 나온거면 cnt++;
+        // Mississipi일때 I=4, S=4라서 cnt=2 됨
         int cnt = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == max_value) {
