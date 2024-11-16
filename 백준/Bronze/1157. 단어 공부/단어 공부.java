@@ -9,7 +9,7 @@ public class Main {
         String str = br.readLine().toUpperCase();
         int[] arr = new int[26];
 
-        // arr[0] x 26 에서 각 i번째 index마다 str 각 단어의 횟수 저장
+        // arr[0] * 26에서 각 i번째 index마다 str의 각 단어 횟수 1씩 추가
         for (int i = 0; i < str.length(); i++) {
             arr[str.charAt(i) - 'A']++;
         }
