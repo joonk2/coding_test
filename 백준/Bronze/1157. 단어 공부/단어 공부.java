@@ -10,7 +10,7 @@ public class Main {
         int[] arr = new int[26];
 
 
-        // str의 각 인덱스의 알파벳 등장횟수를 arr에 저장
+        // str의 각 인덱스의 알파벳 등장횟수를 arr에 추가하며 저장
         for (int i = 0; i < str.length(); i++) {
             arr[str.charAt(i) - 'A']++;
         }
