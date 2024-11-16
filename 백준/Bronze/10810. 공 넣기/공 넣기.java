@@ -17,22 +17,21 @@ public class Main {
             int i = Integer.parseInt(st.nextToken());
             int j = Integer.parseInt(st.nextToken());
             int k = Integer.parseInt(st.nextToken());
-            
+
             for (int y = i; y < j+1; y++) {
                 arr[y] = k;
             }
         }
-        
+
+
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i < N+1; i++) {
+        for( int i = 1; i < N+1; i++) {
             sb.append(arr[i] + " ");
         }
-        
-        
+
+
         System.out.println(sb.toString().trim());
-        
-        
-        
-        
+
+
     }
 }
