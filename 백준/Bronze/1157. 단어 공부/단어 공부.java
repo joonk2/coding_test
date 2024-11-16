@@ -17,7 +17,7 @@ public class Main {
         int max_value = 0;
         char answer = '?';
 
-        // 0 ~ 25까지 순회해서 Zza 일 경우 (char) (25 + 'A'); 라서 자동으로 Z
+        // 0 ~ 25까지 순회해서 zZa 일 경우 (char) (25 + 'A'); 라서 자동으로 Z
         for ( int i = 0; i < arr.length; i++) {
             if (max_value < arr[i]) {
                 max_value = arr[i];
