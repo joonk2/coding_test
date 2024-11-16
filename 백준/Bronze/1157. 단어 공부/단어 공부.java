@@ -25,7 +25,7 @@ public class Main {
             }
         }
         
-        // cnt 가 1이면 제일 많이 나온 알파벳 출력, 그 외는 "?"
+        // // cnt > 1 이면 '?', 그 외는 제일 많이 나온 알파벳 출력
         int cnt = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == max_value) {
