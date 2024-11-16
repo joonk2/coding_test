@@ -25,6 +25,7 @@ public class Main {
             }
         }
         
+        // 제일 많이 나온 횟수 cnt++;
         // Mississipi일때 I=4, S=4라서 cnt=2 됨
         int cnt = 0;
         for (int i = 0; i < arr.length; i++) {
