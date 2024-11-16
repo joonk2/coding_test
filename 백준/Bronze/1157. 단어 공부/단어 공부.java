@@ -36,7 +36,7 @@ public class Main {
             }
         }
 
-        // cnt > 1 이면 '?', 그 외는 제일 많이 나온 알파벳 출력
+        // cnt > 1 이면 '?', 그 외는 최빈출 알파벳 출력
         if (cnt > 1) {
             System.out.println('?');
         }
