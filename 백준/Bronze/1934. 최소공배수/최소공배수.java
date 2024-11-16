@@ -27,7 +27,7 @@ public class Main {
     
     
     
-    
+    // Euclidean algorithm
     private static int gcd(int A, int B) {
         if (B == 0) {
             return A;
