@@ -35,7 +35,7 @@ public class Main {
     }
     
     
-    
+    // int --> String
     public static int[] digit_changer(int num) {
         String str = String.valueOf(num);
         int[] digits = new int[str.length()];
