@@ -36,6 +36,7 @@ public class Main {
     
     
     // int --> String
+    // charAt() 자체가 Ascii 코드로 자동변환되는게 원칙이라 ex) 1 5 9 라면, '1'-'0' = 49-48
     public static int[] digit_changer(int num) {
         String str = String.valueOf(num);
         int[] digits = new int[str.length()];
