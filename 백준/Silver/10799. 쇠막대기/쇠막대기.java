@@ -11,10 +11,10 @@ public class Main {
         Stack<Character> stack = new Stack<>();
         int cnt = 0;
 
-        
-        
-        
-        
+
+
+
+        // 아래 로직을 계산하면 예제입력 1 기준으로, 3+3+2+3+2+2+1+0+1 = 17 나온다
         for (int i = 0; i < S.length(); i++) {
             char ch = S.charAt(i);
 
@@ -32,11 +32,11 @@ public class Main {
                 }
             }
         }
-        
-        
-        
+
+
+
         System.out.println(cnt);
-        
+
 
 
     }
