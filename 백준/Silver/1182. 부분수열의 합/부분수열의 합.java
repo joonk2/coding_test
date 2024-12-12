@@ -1,3 +1,5 @@
+// 시작점, 깊이, 수열길이, 중간합
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
