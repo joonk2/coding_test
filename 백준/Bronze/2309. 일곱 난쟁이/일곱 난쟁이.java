@@ -5,19 +5,22 @@ import java.io.BufferedReader;
 import java.util.Arrays;
 
 public class Main {
+    static int[] arr;
+    static int sum;
+
+
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
-        int[] arr = new int[9];
-        int sum = 0;
+        arr = new int[9];
+        sum = 0;
 
         // 1. 입력 및 합계 계산
         for (int i = 0; i < 9; i++) {
             arr[i] = Integer.parseInt(br.readLine());
             sum += arr[i];
         }
-
 
         // 2. 난쟁이 2마리의 키 0cm으로 변경
         for (int i = 0; i < 8; i++) {
@@ -31,9 +34,8 @@ public class Main {
                         System.out.println(arr[k]);
                     }
 
-                    // 원하는 것을 찾았으면, 3중 반복문 탈출
+                    // 3. 원하는 것을 찾았으면, 3중 반복문 탈출
                     return;
-
                 }
             }
         }
