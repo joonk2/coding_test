@@ -22,7 +22,7 @@ public class Main {
             sum += arr[i];
         }
 
-        // 2. 난쟁이 2마리의 키 0cm으로 변경
+        // 2. 난쟁이 2마리의 키 0cm으로 변경 후, 오름차순 정렬
         for (int i = 0; i < 8; i++) {
             for (int j = i+1; j < 9; j++) {
                 if (sum - arr[i] - arr[j] == 100) {
