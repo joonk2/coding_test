@@ -16,7 +16,7 @@ public class Main {
         arr = new int[9];
         sum = 0;
 
-        // 1. 9난쟁이의 키 입력 및 합계 계산
+        // 1. 9난쟁이의 키 입력 및 합산
         for (int i = 0; i < 9; i++) {
             arr[i] = Integer.parseInt(br.readLine());
             sum += arr[i];
