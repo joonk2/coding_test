@@ -31,7 +31,7 @@ public class Main {
         }
 
         // cur_num
-        // k = on what num, bingo is done with 3 sets?
+        // k = on what num, 3 sets of bingo completed
         int k = 0;
         for (int i = 0; i < 5; i++) {
             st = new StringTokenizer(br.readLine().trim());
