@@ -1,6 +1,6 @@
 /*
-1. 빙고 경우의 수 4개 생각하라
-(가로,세로는 각각 5개, 대각선은 가능할 경우가 각각 1개)
+1. 빙고 경우의 수를 4개 생각하라
+(가로, 세로는 각각 5개, 대각선은 가능할 경우가 각각 1개)
 2. 현재 선택중인 숫자 기록
 3. 3줄되면 즉시 종료하면서 당시 선택된 숫자 출력
  */
@@ -17,12 +17,11 @@ public class Main {
     static StringTokenizer st;
 
 
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        cnt = 0;
 
         // input
-        cnt = 0;
         for (int i = 0; i < 5; i++) {
             st = new StringTokenizer(br.readLine().trim());
             for (int j = 0; j < 5; j++) {
@@ -31,7 +30,7 @@ public class Main {
         }
 
         // make a cur_num and adapt'em to mark_num()
-        // k = on what num, 3 sets of bingo completed
+        // k = on what num, 3 sets of bingo completed?
         int k = 0;
         for (int i = 0; i < 5; i++) {
             st = new StringTokenizer(br.readLine().trim());
@@ -48,7 +47,7 @@ public class Main {
                 lr_check();
                 rl_check();
 
-                // if bingo is 3, then finish
+                // if 3 bingo is completed, then finish
                 if (cnt >= 3) {
                     System.out.println(k);
                     return;
@@ -56,6 +55,7 @@ public class Main {
 
                 // reset with cnt of bingo
                 cnt = 0;
+
             }
         }
 
@@ -63,11 +63,12 @@ public class Main {
 
     }
 
+
     // mark_num
     // all cur_num -> 0
     public static void mark_num(int cur_num) {
         for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5 ; j++) {
+            for (int j = 0; j < 5; j++) {
                 if (bingo[i][j] == cur_num) {
                     bingo[i][j] = 0;
                 }
@@ -80,7 +81,7 @@ public class Main {
         for (int i = 0; i < 5; i++) {
             cnt_zero = 0;
             for (int j = 0; j < 5; j++) {
-                if (bingo[i][j] == 0) {
+                if (bingo[j][i] == 0) {
                     cnt_zero++;
                 }
             }
@@ -95,7 +96,7 @@ public class Main {
         for (int i = 0; i < 5; i++) {
             cnt_zero = 0;
             for (int j = 0; j < 5; j++) {
-                if (bingo[j][i] == 0) {
+                if (bingo[i][j] == 0) {
                     cnt_zero++;
                 }
             }
