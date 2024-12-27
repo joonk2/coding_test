@@ -30,7 +30,7 @@ public class Main {
             }
         }
 
-        // marking a cur_num
+        // make a cur_num and adapt'em to mark_num()
         // k = on what num, 3 sets of bingo completed
         int k = 0;
         for (int i = 0; i < 5; i++) {
@@ -39,7 +39,7 @@ public class Main {
                 int cur_num = Integer.parseInt(st.nextToken());
                 k++;
 
-                // changing a cur_num
+                // changing a cur_num to 0
                 mark_num(cur_num);
 
                 // bingo check
