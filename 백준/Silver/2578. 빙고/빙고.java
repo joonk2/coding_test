@@ -30,7 +30,7 @@ public class Main {
             }
         }
 
-        // cur_num
+        // marking a cur_num
         // k = on what num, 3 sets of bingo completed
         int k = 0;
         for (int i = 0; i < 5; i++) {
