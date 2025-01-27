@@ -1,6 +1,6 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -12,12 +12,13 @@ public class Main {
 		int y2 = y.charAt(1) - '0';
 		int y1 = y.charAt(0) - '0';
 		
+		int int_y = Integer.parseInt(y);
+		
 		System.out.println(x*y3);
 		System.out.println(x*y2);
 		System.out.println(x*y1);
 		
-		System.out.println(x*Integer.parseInt(y));
-		
+		System.out.println(x*int_y);
 		
 		
 	}
