@@ -7,13 +7,13 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String S = br.readLine();
 		
-		int cnt = 0;
-		for (char ch : S.toCharArray()) {
-			cnt++;
-		}
-		
-		System.out.println(cnt);
-		
+//		int cnt = 0;
+//		for (char ch : S.toCharArray()) {
+//			cnt++;
+//		}
+//		
+//		System.out.println(cnt);
+		System.out.println(S.length());
 		
 		
 	}
