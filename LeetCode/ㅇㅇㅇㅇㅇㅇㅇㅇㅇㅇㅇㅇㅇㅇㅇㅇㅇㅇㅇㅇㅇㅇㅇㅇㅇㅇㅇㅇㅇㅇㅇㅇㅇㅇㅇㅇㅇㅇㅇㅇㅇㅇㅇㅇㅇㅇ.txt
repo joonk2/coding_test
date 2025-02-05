@@ -1,0 +1,5 @@
+splunk
+도커-쿠버네티스
+airflow- MLflow
+
+workflow 끝내고 aws
