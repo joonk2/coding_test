@@ -14,8 +14,9 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 import java.util.Queue;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import java.util.Arrays;
+import java.util.ArrayDeque;
 
 public class Main {
 	static int M, N;
@@ -73,7 +74,8 @@ public class Main {
 	
 	
 	public static void bfs() {
-		Queue<int[]> q = new LinkedList<>();
+//		Queue<int[]> q = new LinkedList<>();
+		Queue<int[]> q = new ArrayDeque<>();
 		
 		// searching startPoint and putting it in q
 		for (int r = 0; r < N; r++) {
