@@ -1,8 +1,11 @@
 /*
 [접근방법]
 1. 그리디 
+2. 이분탐색
 
 */
+
+
 
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -27,31 +30,41 @@ public class Main {
 		// total_national_budget
 		int M = Integer.parseInt(br.readLine());
 		
-		// asc;
+		// 이분 탐색을 위해 미리 asc 정렬하자
 		Arrays.sort(cost);
 		
-		int total = 0;
-		for (int i = 0; i < N; i++) {
-			int remain = N-i;
+		
+		int left = 0;
+		int right = cost[N-1];
+		int res = 0;
+		
+		while (left <= right) {
+			int mid = (left + right) / 2;
+			long sum = 0;
 			
-			if (total + (cost[i]*remain) <= M ) {
-				total += cost[i];
+			// 금액 배분
+			for (int i = 0; i < N; i++ ) {
+				if (cost[i] > mid) {
+					sum += mid;
+				}
+				else {
+					sum += cost[i];
+				}
+			}
+			
+			
+			// 예산 키우기
+			if (sum <= M) {
+				res = mid;
+				left = mid + 1;
 			}
 			else {
-				System.out.println( ((M-total) / remain) );
-				return;
+				right = mid - 1;
 			}
-			
 			
 		}
 		
-		
-		System.out.println(cost[N-1]);
-		
-		
-		
-		// res
-//		System.out.println(Arrays.toString(cost));
+		System.out.println(res);
 		
 		
 		
