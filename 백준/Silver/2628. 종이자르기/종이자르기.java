@@ -1,91 +1,68 @@
-/*
-1. 종이의 경계 포함 (0,X), (0,Y)
-2. size()-1 범위를 통해 맨끝 연속값 거리 계산 get(i+1) - get(i)
-3. 정렬시 다음과 같이 된다
-
-첫 번째 명령 0 3: row_cut에 3 추가 -> [0,10,3]
-두 번째 명령 1 4: col_cut에 4 추가 -> [0,8,4]
-세 번째 명령 0 2: row_cut에 2 추가 -> [0,10,3,2]
-그리고 ASC;
- */
-
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-import java.util.StringTokenizer;
 import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collections;
+//import java.util.ArrayList;
 
 public class Main {
-    static StringTokenizer st;
-    static int X, Y, N;
-    static int max_X, max_Y;
-    static ArrayList<Integer> row_cut = new ArrayList<>();
-    static ArrayList<Integer> col_cut = new ArrayList<>();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] xy = br.readLine().split(" ");
+		int x = Integer.parseInt(xy[0]);
+		int y = Integer.parseInt(xy[1]);
+			
+		int N = Integer.parseInt(br.readLine());
+		
+		// max 100 + 2(start, end)
+		int[] row = new int[102]; 
+		int[] col = new int[102];
+		int r_cnt = 0;
+		int c_cnt = 0;
+		
+		row[r_cnt++] = 0;
+		row[r_cnt++] = y;
+		col[c_cnt++] = 0;
+		col[c_cnt++] = x;
+		
+		for (int i = 0; i < N; i++) {
+			String[] line = br.readLine().split(" ");
+			int dir = Integer.parseInt(line[0]);
+			int pos = Integer.parseInt(line[1]);
+			
+			if (dir == 0) {
+				row[r_cnt++] = pos;
+			}
+			else if (dir == 1) {
+				col[c_cnt++] = pos;
+			}
+			
+		}
+			// sort(idx[0] ~ idx[r_cnt])
+			Arrays.sort(row, 0, r_cnt);
+			Arrays.sort(col, 0, c_cnt);
+			
+			int max_row = 0;
+			for (int k = 1; k < r_cnt; k++) {
+				int temp_row = row[k] - row[k-1];
+				if (temp_row > max_row) {
+					max_row = temp_row;
+				}
+			}
+			
+			
+			int max_col = 0;
+			for (int k = 1; k < c_cnt; k++) {
+				int temp_col = col[k] - col[k-1];
+				if (temp_col > max_col) {
+					max_col = temp_col;
+				}
+			}
+			
 
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        st = new StringTokenizer(br.readLine().trim());
-        X = Integer.parseInt(st.nextToken());
-        Y = Integer.parseInt(st.nextToken());
-
-        // from start to end
-        row_cut.add(0);
-        row_cut.add(Y);
-        col_cut.add(0);
-        col_cut.add(X);
-
-        N = Integer.parseInt(br.readLine());
-        for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine().trim());
-            int type = Integer.parseInt(st.nextToken());
-
-            if (type == 0) {
-                row_cut.add(Integer.parseInt(st.nextToken()));
-            }
-            else if (type == 1) {
-                col_cut.add(Integer.parseInt(st.nextToken()));
-            }
-
-        }
-
-        // Arrangement
-        Collections.sort(row_cut);
-        Collections.sort(col_cut);
-
-        rowCut();
-        colCut();
-
-        System.out.println(max_X * max_Y);
-
-        br.close();
-
-
-
-    }
-
-    
-
-    public static void rowCut() {
-        for (int i = 0; i < row_cut.size()-1; i++) {
-            int dist = row_cut.get(i+1) - row_cut.get(i);
-
-            max_X = Math.max(max_X, dist);
-        }
-    }
-
-
-    public static void colCut() {
-        for (int i = 0; i < col_cut.size()-1; i++) {
-            int dist = col_cut.get(i+1) - col_cut.get(i);
-
-            max_Y = Math.max(max_Y, dist);
-        }
-    }
-
-
-    
+		
+		System.out.println(max_row * max_col);
+		
+		
+	}
 }
