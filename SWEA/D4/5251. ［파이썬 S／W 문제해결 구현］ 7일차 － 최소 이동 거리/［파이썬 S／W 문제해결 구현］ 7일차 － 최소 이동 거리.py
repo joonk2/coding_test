@@ -1,38 +1,31 @@
+import heapq
+
 T = int(input())
 for tc in range(1, T+1):
     N, E = map(int, input().split())
 
-
-    # 인접행렬 초기화
-    graph = [[0] *(N+1) for _ in range(N+1)]
+    adj_lst = [[] for _ in range(N+1)]
     for _ in range(E):
-        s, e, w = map(int, input().split())
-        graph[s][e] = w
+        s,e,w = map(int, input().split())
+        adj_lst[s].append((e,w))
 
-    # 거리와 방문 배열 초기화
+
+    # 최단경로 리스트
     INF = float('inf')
-    distance = [INF] * (N+1)
-    visited = [0] * (N+1)
-    distance[0] = 0
+    min_dist = [INF] *(N+1)
+    min_dist[0] = 0
 
-    for _ in range(N+1):
-        # 아직 방문하지 않은 노드 중 최솟값 찾기
-        min_idx = -1
-        min_val = INF
-        for i in range(N+1):
-            if not visited[i] and distance[i] < min_val:
-                min_val = distance[i]
-                min_idx = i
+    # 우선순위 큐 (현재 노드, 가중치)
+    pq = [(0,0)]
+    while pq:
+        cur_node, cur_w = heapq.heappop(pq)
+        # 인접 리스트를 탐색
+        for adj_node, adj_w in adj_lst[cur_node]:
+            next_w = cur_w + adj_w
+            if min_dist[adj_node] > next_w:
+                min_dist[adj_node] = next_w
 
-        if min_idx == -1:
-            break
+                # 최소값 갱신
+                heapq.heappush(pq, (adj_node, next_w))
 
-        visited[min_idx] = 1
-
-        # 인접 노드 거리 갱신
-        for i in range(N+1):
-            if not visited[i] and graph[min_idx][i] > 0:
-                if distance[i] > distance[min_idx] + graph[min_idx][i]:
-                    distance[i] = distance[min_idx] + graph[min_idx][i]
-
-    print(f"#{tc} {distance[N]}")
+    print(f"#{tc} {min_dist[N]}")
