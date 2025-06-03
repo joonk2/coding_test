@@ -5,17 +5,18 @@ import java.io.BufferedReader;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		
 		int N = Integer.parseInt(br.readLine());
-		int cnt_long = N / 4;
+		int cnt = 0;
+		cnt += (N/4);
+//		System.out.println(cnt);
 		
-		for (int i = 0; i < cnt_long; i++) {
-			sb.append("long ");
+		
+		
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < cnt; i++) {
+			sb.append("long" + " ");
 		}
 		sb.append("int");
-		
-		System.out.println(sb.toString());
-		
+		System.out.println(sb);
 	}
 }
