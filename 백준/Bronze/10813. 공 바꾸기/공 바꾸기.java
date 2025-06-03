@@ -2,39 +2,37 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
+//import java.util.Arrays;
+
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
+		String[] NM = br.readLine().split(" ");
+		int N = Integer.parseInt(NM[0]);
+		int M = Integer.parseInt(NM[1]);
+		int box_size = ++N;
+//		System.out.println(box_size);
 		
-		String[] s_arr = br.readLine().split(" ");
-		int N = Integer.parseInt(s_arr[0]);
-		int M = Integer.parseInt(s_arr[1]);
-		
-		int[] basket = new int[N+1];
-		for (int i = 1; i < N+1; i++) {
-			basket[i] = i;
+		int[] box = new int[box_size];
+		for (int i = 0; i < box_size; i++) {
+			box[i] = i;
 		}
+//		System.out.println(Arrays.toString(box));
 		
 		for (int k = 0; k < M; k++) {
-			String[] arr = br.readLine().split(" ");
-			int i = Integer.parseInt(arr[0]);
-			int j = Integer.parseInt(arr[1]);
-			
-			int temp = basket[i];
-			basket[i] = basket[j];
-			basket[j] = temp;
+			String[] ij = br.readLine().split(" ");
+			int i = Integer.parseInt(ij[0]);
+			int j = Integer.parseInt(ij[1]);
+			int temp = box[i];
+			box[i] = box[j];
+			box[j] = temp;
 		}
-		br.close();
+//		System.out.println(Arrays.toString(box));
 		
-		for (int i = 1; i < N+1; i++) {
-			sb.append(basket[i] + " ");
+		StringBuilder sb = new StringBuilder();
+		for (int i = 1; i < box_size; i++) {
+			sb.append(box[i] + " ");
 		}
-		
-		System.out.println(sb.toString().trim());
-		
-		
-		
-		
+		System.out.println(sb);
 	}
 }
