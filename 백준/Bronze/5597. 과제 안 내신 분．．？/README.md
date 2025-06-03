@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 14388 KB, 시간: 112 ms
+메모리: 11468 KB, 시간: 60 ms
 
 ### 분류
 
@@ -12,17 +12,19 @@
 
 ### 제출 일자
 
-2025년 1월 30일 21:58:12
+2025년 6월 4일 01:14:05
 
 ### 문제 설명
 
-<p>Professor M of JOI University teaches a course on computer programming. 30 students take the course and are numbered 1 to 30. 28 students have handed in their homework but the other two students have not yet. Write a program which, given the numbers of students who have handed in their homework, outputs the numbers of the students who have not handed in their homework.</p>
+<p>X대학 M교수님은 프로그래밍 수업을 맡고 있다. 교실엔 학생이 30명이 있는데, 학생 명부엔 각 학생별로 1번부터 30번까지 출석번호가 붙어 있다.</p>
+
+<p>교수님이 내준 특별과제를 28명이 제출했는데, 그 중에서 제출 안 한 학생 2명의 출석번호를 구하는 프로그램을 작성하시오.</p>
 
 ### 입력 
 
- <p>The input file contains 28 lines. Each line of the input file contains a number of a student who has handed in her/his homework. The numbers in the input file are between 1 and 30, inclusive, and distinct from each other. The numbers are given in no particular order.</p>
+ <p>입력은 총 28줄로 각 제출자(학생)의 출석번호 n(1 ≤ n ≤ 30)가 한 줄에 하나씩 주어진다. 출석번호에 중복은 없다.</p>
 
 ### 출력 
 
- <p>You should submit the output file which consists of two lines, and each of lines should contain the number of a student who has not handed in her/his homowork. The number in the first line should be less than the one in the second line.</p>
+ <p>출력은 2줄이다. 1번째 줄엔 제출하지 않은 학생의 출석번호 중 가장 작은 것을 출력하고, 2번째 줄에선 그 다음 출석번호를 출력한다.</p>
 
