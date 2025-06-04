@@ -1,32 +1,44 @@
-import java.util.StringTokenizer;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
+
+//import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String S = br.readLine();
-
-        // -1로 된 알파벳 배열 갯수 26개 생성
-        int arr[] = new int[26];
-        for (int i = 0; i < 26; i++) {
-            arr[i] = -1;
-        }
-
-        //S 문자열 인덱스 설정
-        for (int i = 0; i < S.length(); i++) {
-            char ch = S.charAt(i);
-
-            // arr에 매칭
-            if (arr[ch - 'a'] == -1) {
-                arr[ch-'a'] = i;
-            }
-        }
-        // 출력
-        for (int res : arr) {
-            System.out.print(res + " ");
-        }
-
-    }
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String words = br.readLine();
+		int[] alphabet_dict = new int[26];
+		
+		for (int i = 0; i < 26; i++) {
+			alphabet_dict[i] = -1;
+		}
+		
+		for (int i = 0; i < words.length(); i++) {
+			char ch = words.charAt(i);
+			int target_idx = ch-'a';
+//			System.out.println(ch);
+//			System.out.println(ch-'a');
+			
+			if (alphabet_dict[target_idx] == -1) {
+				alphabet_dict[target_idx] = i;
+			}
+			
+		}
+		
+		
+		
+//		System.out.println(Arrays.toString(alphabet_dict));
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 26; i++) {
+			if (i < 25) {
+				sb.append(alphabet_dict[i] + " ");
+			}
+			else {
+				sb.append(alphabet_dict[i]);
+			}
+		}
+		
+		System.out.println(sb);
+	}
 }
