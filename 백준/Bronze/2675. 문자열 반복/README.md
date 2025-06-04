@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 14168 KB, 시간: 100 ms
+메모리: 11484 KB, 시간: 60 ms
 
 ### 분류
 
@@ -12,19 +12,19 @@
 
 ### 제출 일자
 
-2024년 11월 18일 22:06:13
+2025년 6월 4일 22:19:54
 
 ### 문제 설명
 
-<p>For this problem, you will write a program that takes a string of characters, S, and creates a new string of characters, T, with each character repeated R times. That is, R copies of the first character of S, followed by R copies of the second character of S, and so on. Valid characters for S are the QR Code "alphanumeric" characters:</p>
+<p>문자열 S를 입력받은 후에, 각 문자를 R번 반복해 새 문자열 P를 만든 후 출력하는 프로그램을 작성하시오. 즉, 첫 번째 문자를 R번 반복하고, 두 번째 문자를 R번 반복하는 식으로 P를 만들면 된다. S에는 QR Code "alphanumeric" 문자만 들어있다.</p>
 
-<pre>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$%*+-./:</pre>
+<p>QR Code "alphanumeric" 문자는 <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\$%*+-./:</code> 이다.</p>
 
 ### 입력 
 
- <p>The first line of input contains a single integer P, ( 1 ≤ P ≤ 1000), which is the number of data sets that follow. Each data set is a single line of input consisting of the data set number N, followed by a space, followed by the repeat count R, ( 1 ≤ R ≤ 8), followed by a space, followed by the string S. The length of string S will always be at least one and no more than 20 characters. All the characters will be from the set of characters shown above.</p>
+ <p>첫째 줄에 테스트 케이스의 개수 T(1 ≤ T ≤ 1,000)가 주어진다. 각 테스트 케이스는 반복 횟수 R(1 ≤ R ≤ 8), 문자열 S가 공백으로 구분되어 주어진다. S의 길이는 적어도 1이며, 20글자를 넘지 않는다. </p>
 
 ### 출력 
 
- <p>For each data set there is one line of output. It contains the data set number, N, followed by a single space which is then followed by the new string T, which is made of each character in S repeated R times.</p>
+ <p>각 테스트 케이스에 대해 P를 출력한다.</p>
 

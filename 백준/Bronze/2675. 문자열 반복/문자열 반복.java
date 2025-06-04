@@ -3,30 +3,25 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-
-        for (int i = 0; i < N; i++) {
-            String[] S = br.readLine().split(" ");
-            int cnt = Integer.parseInt(S[0]);
-            String word = S[1];
-
-            StringBuilder sb = new StringBuilder();
-
-            // word의 각 문자에 대해 cnt만큼 반복
-            // 너무 중요 --> for (char ch : word.toCharArray())
-            for (char ch : word.toCharArray()) {
-                for (int j = 0; j < cnt; j++) {
-                    sb.append(ch);
-                }
-            }
-
-            // 출력
-            System.out.println(sb);
-
-        }
-
-
-    }
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		for (int i = 0; i < N; i++) {
+			String[] RS = br.readLine().split(" ");
+			int R = Integer.parseInt(RS[0]);
+			String S = RS[1];
+			
+			StringBuilder sb = new StringBuilder();
+			for (int j = 0; j < S.length(); j++) {
+				char ch = S.charAt(j);
+				for (int k = 1; k < R+1; k++) {
+					sb.append(ch);
+				}
+			}
+			System.out.println(sb);
+			
+			
+		}
+		
+	}
 }
