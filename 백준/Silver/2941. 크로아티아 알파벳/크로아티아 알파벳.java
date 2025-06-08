@@ -5,44 +5,78 @@ import java.io.InputStreamReader;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String S = br.readLine();
+		String words = br.readLine();
+		int res = word_cnt_checker(words);
+		System.out.println(res);
+	}
+	
+	
+	
+	
+	
+	public static int word_cnt_checker(String str) {
 		int cnt = 0;
-		
-		// c=, cz, dz=, d-, lj, nj, z=, z=
-		// 목록에 없는 알파벳은 1글자씩 가산
-		for (int i = 0; i < S.length(); i++) {
-			if (S.charAt(i) == 'c' && i < S.length()-1) {
-				if (S.charAt(i+1) == '=' || S.charAt(i+1) == '-') {
-					i++;
-				}
+		int i = 0;
+		while (i < str.length()) {
+			char ch = str.charAt(i);
+			// 앞자리가 c고, 2자리를 셀만큼 idx의 길이가 되고, 2번째가 '=' 혹은 '-' 일때
+			if (ch == 'c' && i+1 < str.length() && (str.charAt(i+1) == '=' || str.charAt(i+1) == '-') ) {
+				cnt++;
+				i += 2;
 			}
-			else if (S.charAt(i) == 'd' && i < S.length()-1) {
-				if (S.charAt(i+1) == '-') {
-					i++;
+			else if (ch == 'd') {
+				if (i+2 < str.length() && (str.charAt(i+1) == 'z' && str.charAt(i+2) == '=') ) {
+//					System.out.println(ch+""+str.charAt(i+1)+""+str.charAt(i+2));
+					cnt++;
+					i += 3;	
 				}
-				else if (i < S.length()-2 && S.charAt(i+1) == 'z' && S.charAt(i+2) == '=') {
+				else if (i+1 < str.length() && (str.charAt(i+1) == '-') ) {
+//					System.out.println(ch+""+str.charAt(i+1));
+					cnt++;
 					i += 2;
 				}
-			}
-			else if ( (S.charAt(i) == 'l' || S.charAt(i) == 'n') && i < S.length()-1 ) {
-				if (S.charAt(i+1) == 'j') {
-					i++;
-				}
-			} 
-			else if ( (S.charAt(i) == 's' || S.charAt(i) == 'z') && i < S.length()-1 ) {
-				if (S.charAt(i+1) == '=') {
+				else {
+//					System.out.println(ch);
+					cnt++;
 					i++;
 				}
 			}
+			else if (ch == 'l' && i+1 < str.length() && str.charAt(i+1) == 'j' ) {
+//				System.out.println(ch+""+str.charAt(i+1));
+				cnt++;
+				i += 2;
+			}
+			else if (ch == 'n' && i+1 < str.length() && str.charAt(i+1) == 'j') {
+//				System.out.println(ch+""+str.charAt(i+1));
+				cnt++;
+				i += 2;
+				
+			}
+			else if (ch == 's' && i+1 < str.length() && str.charAt(i+1) == '=' ) {
+//				System.out.println(ch+""+str.charAt(i+1));
+				cnt++;
+				i += 2;
+			}
+			else if (ch == 'z' && i+1 < str.length() && str.charAt(i+1) == '=' ) {
+//				System.out.println(ch+""+str.charAt(i+1));
+				cnt++;
+				i += 2;
+			}
 			
-			cnt++;
-			
-			
-			
+			// 알파벳에 없는 나머지 경우
+			else {
+//				System.out.println(ch);
+				cnt++;
+				i++;
+			}
+
 		}
 		
-		br.close();
-		System.out.println(cnt);
 		
+		return cnt;
 	}
+	
+	
+	
+	
 }
