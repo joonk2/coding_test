@@ -2,8 +2,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -12,20 +12,17 @@ public class Main {
 		int M = Integer.parseInt(MS[0]);
 		int S = Integer.parseInt(MS[1]);
 		
-		List<String> target_vals = new ArrayList<>();
+		Set<String> targetSet = new HashSet<>();
 		
 		for (int i = 0; i < M; i++) {
-			target_vals.add(br.readLine());
+			targetSet.add(br.readLine());
 		}
 		
 		int cnt = 0;
 		for (int i = 0; i < S; i++) {
 			String temp_val = br.readLine();
-			for (int j = 0; j < M; j++) {
-				if (temp_val.equals(target_vals.get(j))) {
-					cnt++;
-					break;
-				}
+			if (targetSet.contains(temp_val)) {
+				cnt++;
 			}
 		}
 		System.out.println(cnt);
