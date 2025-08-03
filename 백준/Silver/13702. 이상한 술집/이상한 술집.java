@@ -17,21 +17,21 @@ public class Main {
 		}
 		Arrays.sort(beers);
 		
-		long res = parametric_search(K, beers);
+		int res = parametric_search(K, beers);
 		System.out.print(res);
 		
 		
 	}
 	
 	
-	public static long parametric_search(int K, int[] beers) {
-		long answer = 0;
-		long left = 1;
-		long right = beers[beers.length-1];
+	public static int parametric_search(int K, int[] beers) {
+		int answer = 0;
+		int left = 1;
+		int right = beers[beers.length-1];
 		
 		while (left <= right) {
-			long mid = (left + right) / 2;
-			long cnt = 0;
+			int mid = (left/2) + (right/2) + (1& left & right);
+			int cnt = 0;
 			for (int i : beers) {
 				cnt += (i / mid);
 			}
