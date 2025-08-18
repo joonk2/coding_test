@@ -1,63 +1,50 @@
 import java.io.IOException;
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import java.util.StringTokenizer;
-import java.util.Stack;
+import java.io.BufferedReader;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Stack<Integer> stack = new Stack<>();
-        StringTokenizer st;
-        int N = Integer.parseInt(br.readLine());
-
-        for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            String S = st.nextToken();
-
-            if (S.equals("push")) {
-                stack.push(Integer.parseInt(st.nextToken()));
-            }
-
-            else if (S.equals("pop")) {
-                if (stack.empty()) {
-                    System.out.println(-1);
-                }
-                else {
-                    System.out.println(stack.pop());
-                }
-            }
-
-            else if (S.equals("size")) {
-                System.out.println(stack.size());
-            }
-
-            else if (S.equals("empty")) {
-                if (stack.empty()) {
-                    System.out.println(1);
-                }
-                else {
-                    System.out.println(0);
-                }
-            }
-
-            else if (S.equals("top")) {
-                if (stack.empty()) {
-                    System.out.println(-1);
-                }
-                else {
-                    System.out.println(stack.peek());
-                }
-            }
-
-
-
-
-
-
-        }
-
-
-    }
+	static int[] stack = new int[10001];
+	static int idx = 0;
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		for (int i = 0; i < N; i++) {
+			String s = br.readLine();
+			my_stack(s);
+		}
+	}
+	
+	
+	
+	public static void my_stack(String commands) {
+		if (commands.startsWith("push")) {
+			int num = Integer.parseInt(commands.split(" ")[1]);
+			stack[idx] = num;
+			++idx;
+		}
+		else if (commands.equals("pop")) {
+			if (idx == 0) System.out.println(-1);
+			else {
+				--idx;
+				System.out.println(stack[idx]);
+			}
+		}
+		else if (commands.equals("size")) System.out.println(idx);
+		else if (commands.equals("top")) {
+			if (idx == 0) System.out.println(-1);
+			else System.out.println(stack[idx-1]);
+		}
+		else if (commands.equals("empty")) {
+			if (idx == 0) System.out.println(1);
+			else System.out.println(0);
+		} 
+	
+	
+	}
+	
+	
+	
+	
+	
 }
