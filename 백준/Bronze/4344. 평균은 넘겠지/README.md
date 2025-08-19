@@ -4,25 +4,27 @@
 
 ### 성능 요약
 
-메모리: 15824 KB, 시간: 144 ms
+메모리: 13672 KB, 시간: 100 ms
 
 ### 분류
 
-사칙연산, 수학
+수학, 사칙연산
 
 ### 제출 일자
 
-2024년 11월 19일 17:07:19
+2025년 8월 19일 09:22:47
 
 ### 문제 설명
 
-<p>It is said that 90% of frosh expect to be above average in their class. You are to provide a reality check.</p>
+<p>대학생 새내기들의 90%는 자신이 반에서 평균은 넘는다고 생각한다. 당신은 그들에게 슬픈 진실을 알려줘야 한다.</p>
 
 ### 입력 
 
- <p>The first line of standard input contains an integer C, the number of test cases. C data sets follow. Each data set begins with an integer, N, the number of people in the class (1 <= N <= 1000). N integers follow, separated by spaces, each giving the final grade (an integer between 0 and 100) of a student in the class. </p>
+ <p>첫째 줄에는 테스트 케이스의 개수 C가 주어진다.</p>
+
+<p>둘째 줄부터 각 테스트 케이스마다 학생의 수 N(1 ≤ N ≤ 1000, N은 정수)이 첫 수로 주어지고, 이어서 N명의 점수가 주어진다. 점수는 0보다 크거나 같고, 100보다 작거나 같은 정수이다.</p>
 
 ### 출력 
 
- <p>For each case you are to output a line giving the percentage of students whose grade is above average, rounded to 3 decimal places. An absolute or relative error of up to 10<sup>-3</sup> compared to the correct answer will be accepted.</p>
+ <p>각 케이스마다 한 줄씩 평균을 넘는 학생들의 비율을 반올림하여 소수점 셋째 자리까지 출력한다. 정답과 출력값의 절대/상대 오차는 10<sup>-3</sup>이하이면 정답이다.</p>
 
