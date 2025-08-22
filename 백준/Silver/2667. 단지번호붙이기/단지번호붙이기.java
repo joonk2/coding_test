@@ -2,14 +2,13 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-// BFS
-import java.util.Queue;
-import java.util.LinkedList;
+// DFS
+import java.util.Stack;
+import java.util.List;
 
 // answer
 import java.util.ArrayList;
 import java.util.Collections;
-
 
 
 
@@ -20,26 +19,28 @@ public class Main {
 	static int[][] matrix;
 	static boolean[][] visited;
 	static int[] dr = {-1,1,0,0};
-	static int[] dc = {0,0,-1,1};
+	static int[] dc= {0,0,-1,1};
+	
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
-		visited = new boolean[N][N];
 		matrix = new int[N][N];
+		visited = new boolean[N][N];
 		
 		for (int r = 0; r < N; r++) {
 			String col = br.readLine();
 			for (int c = 0; c < N; c++) {
-				matrix[r][c] = col.charAt(c) - '0';
+				matrix[r][c] = col.charAt(c)-'0';
 			}
 		}
-		BFS();
+		DFS();
 	}
 	
 	
 	
-	public static void BFS() {
+	
+	public static void DFS() {
 		ArrayList<Integer> answer_lst = new ArrayList<>();
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++) {
@@ -51,25 +52,24 @@ public class Main {
 		}
 		Collections.sort(answer_lst, Collections.reverseOrder());
 		System.out.println(answer_lst.size());
-		
 		for (int i = answer_lst.size()-1; i >= 0; i--) {
-			int temp_val = answer_lst.get(i);
-			System.out.println(temp_val);
+			int num = answer_lst.get(i);
+			System.out.println(num);
 		}
-		
 	}
 	
 	
 	
 	
+	
 	public static int house_cnt(int r, int c) {
-		Queue<int[]> q = new LinkedList<>();
-		q.offer(new int[] {r, c});
+		Stack<int[]> stack = new Stack<>();
+		stack.push(new int[] {r, c});
 		visited[r][c] = true;
 		int cnt = 1;
 		
-		while(!q.isEmpty()) {
-			int[] cur_pos = q.poll();
+		while (!stack.isEmpty()) {
+			int[] cur_pos = stack.pop();
 			int cur_r = cur_pos[0];
 			int cur_c = cur_pos[1];
 			
@@ -78,16 +78,17 @@ public class Main {
 				int nc = cur_c + dc[d];
 				if (nr >= 0 && nr < N && nc >= 0 && nc < N) {
 					if (matrix[nr][nc] == 1 && !visited[nr][nc]) {
-						q.offer(new int[] {nr, nc});
+						stack.push(new int[] {nr, nc});
 						visited[nr][nc] = true;
 						cnt++;
 					}
-				}
+				}	
 			}
-			
 		}
 		return cnt;
 	}
+	
+	
 	
 	
 	
