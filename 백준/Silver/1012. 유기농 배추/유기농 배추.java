@@ -2,15 +2,19 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-// DFS (stack)
-import java.util.Stack;
+// BFS
+import java.util.Queue;
+import java.util.LinkedList;
 
-// answer
-import java.util.ArrayList;
+// answer_lst
+//import java.util.ArrayList;
+
+// test
+//import java.util.Arrays;
 
 
 public class Main {
-	static int T, M, N, K;
+	static int M, N, K;
 	static int[][] matrix;
 	static boolean[][] visited;
 	static int[] dr = {-1,1,0,0};
@@ -18,8 +22,7 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		T = Integer.parseInt(br.readLine());
-		
+		int T = Integer.parseInt(br.readLine());
 		for (int tc = 1; tc < T+1; tc++) {
 			String[] MNK = br.readLine().split(" ");
 			M = Integer.parseInt(MNK[0]);
@@ -30,64 +33,60 @@ public class Main {
 			visited = new boolean[N][M];
 			
 			for (int i = 0; i < K; i++) {
-				String[] rc = br.readLine().split(" ");
-				int c = Integer.parseInt(rc[0]);
-				int r = Integer.parseInt(rc[1]);
+				String[] cr = br.readLine().split(" ");
+				int c = Integer.parseInt(cr[0]);
+				int r = Integer.parseInt(cr[1]);
 				matrix[r][c] = 1;
 			}
-			DFS();
+			BFS();
 		}
 	}
 	
 	
 	
-	
-	public static void DFS() {
-		ArrayList<Integer> answer_lst = new ArrayList<>();
-		
+	public static void BFS() {
+		int cnt = 0;
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < M; c++) {
 				if (matrix[r][c] == 1 && !visited[r][c]) {
-					int cnt = worm_cnt(r, c);
-					answer_lst.add(cnt);
+					worm_cnt(r, c);
+					cnt++;
 				}
 			}
 		}
-		int cnt = 0;
-		for (int i = 0; i < answer_lst.size(); i++) cnt++;
 		System.out.println(cnt);
 	}
 	
 	
 	
 	
-	
 	public static int worm_cnt(int r, int c) {
-		Stack<int[]> stack = new Stack<>();
-		stack.push(new int[] {r, c});
+		Queue<int[]> q = new LinkedList<>();
+		q.offer(new int[] {r, c});
 		visited[r][c] = true;
+		
 		int cnt = 1;
-		while (!stack.isEmpty()) {
-			int[] cur_pos = stack.pop();
+		while (!q.isEmpty()) {
+			int[] cur_pos = q.poll();
 			int cur_r = cur_pos[0];
 			int cur_c = cur_pos[1];
-			
 			for (int d = 0; d < 4; d++) {
 				int nr = cur_r + dr[d];
 				int nc = cur_c + dc[d];
 				if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
 					if (matrix[nr][nc] == 1 && !visited[nr][nc]) {
-						stack.push(new int[] {nr, nc});
+						q.offer(new int[] {nr, nc});
 						visited[nr][nc] = true;
 						cnt++;
 					}
 				}
 			}
-			
 		}
 		return cnt;
-		
 	}
+	
+	
+	
 	
 	
 	
