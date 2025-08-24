@@ -2,18 +2,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
-// DFS
-import java.util.Stack;
-
+// BFS
+import java.util.Queue;
+import java.util.LinkedList;
 
 
 public class Main {
 	static int N;
 	static int[] dr = {-1,1,0,0};
 	static int[] dc = {0,0,-1,1};
-	static boolean[][] visited;
 	static int[][] matrix;
+	static boolean[][] visited;
 	static int max_val = Integer.MIN_VALUE;
+	static int max_cnt;
+	
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,17 +33,16 @@ public class Main {
 	
 	
 	
-	
 	public static void DFS() {
-		int max_cnt = 0;
+		max_cnt = 0;
 		for (int height = 0; height < max_val + 1; height++) {
-			visited = new boolean[N][N];
 			int temp_cnt = 0;
+			visited = new boolean[N][N];
 			for (int r = 0; r < N; r++) {
 				for (int c = 0; c < N; c++) {
 					if (!visited[r][c] && matrix[r][c] > height) {
 						visited[r][c] = true;
-						int lets_see = safe_area_cnt(r, c, height);
+						safe_area_cnt(r, c, height);
 						temp_cnt++;
 					}
 				}
@@ -54,13 +55,14 @@ public class Main {
 	
 	
 	
+	
 	public static int safe_area_cnt(int r, int c, int height) {
-		Stack<int[]> stack = new Stack<>();
-		stack.push(new int[] {r, c});
+		Queue<int[]> q = new LinkedList<>();
+		q.offer(new int[] {r, c});
 		
 		int cnt = 1;
-		while (!stack.isEmpty()) {
-			int[] cur_pos = stack.pop();
+		while (!q.isEmpty()) {
+			int[] cur_pos = q.poll();
 			int cur_r = cur_pos[0];
 			int cur_c = cur_pos[1];
 			for (int d = 0; d < 4; d++) {
@@ -68,15 +70,17 @@ public class Main {
 				int nc = cur_c + dc[d];
 				if (nr >= 0 && nr < N && nc >= 0 && nc < N) {
 					if (!visited[nr][nc] && matrix[nr][nc] > height) {
-						stack.push(new int[] {nr, nc});
+						q.offer(new int[] {nr, nc});
 						visited[nr][nc] = true;
 						cnt++;
 					}
 				}
 			}
 		}
+		
 		return cnt;
 	}
+	
 	
 	
 }
