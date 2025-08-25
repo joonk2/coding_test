@@ -1,63 +1,63 @@
 import java.io.IOException;
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
-import java.util.StringTokenizer;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		String[] A_lst = br.readLine().split(" ");
+		String[] B_lst = br.readLine().split(" ");
+		int res = find_min_val(N, A_lst, B_lst);
+		System.out.println(res);
+	}
+	
+	
+	
+	
+	public static int find_min_val(int N, String[] A_lst, String[] B_lst) {
+		int answer = 0;
+		
+		int[] A_arr = new int[N];
+		int[] B_arr = new int[N];
+		
+		for (int i = 0; i < N; i++) {
+			A_arr[i] = Integer.parseInt(A_lst[i]);
+		}
+		for (int i = 0; i < N; i++) {
+			B_arr[i] = Integer.parseInt(B_lst[i]);
+		}
+		
+		
+		// BubbleSort (asc)
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N-1; j++) {
+				if (A_arr[j] > A_arr[j+1]) {
+					int temp = A_arr[j+1];
+					A_arr[j+1] = A_arr[j];
+					A_arr[j] = temp;
+				}
+			}
+		}
+		
+		// BubbleSort (desc)
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N-1; j++) {
+				if (B_arr[j] < B_arr[j+1]) {
+					int temp = B_arr[j];
+					B_arr[j] = B_arr[j+1];
+					B_arr[j+1] = temp;
+				}
+			}
+		}
 
-        int N = Integer.parseInt(br.readLine());
-        List<Integer> A = new ArrayList<>();
-        List<Integer> B = new ArrayList<>();
+		// answer
+		for (int i = 0; i < N; i++) {
+			answer += (A_arr[i] * B_arr[i]);
+		}
 
-        // arr A
-        st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < N; i++) {
-            A.add(Integer.parseInt(st.nextToken()));
-        }
-
-        // arr B
-        st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < N; i++) {
-            B.add(Integer.parseInt(st.nextToken()));
-        }
-
-        // res
-        int res = converter(N,A,B);
-        System.out.println(res);
-
-    }
-
-
-
-
-
-
-
-
-    public static int converter(int N, List<Integer> A, List<Integer> B) {
-        Collections.sort(A);
-        int sum = 0;
-
-        for (int i = 0; i < N; i++) {
-            int x = A.get(i);
-            int y = Collections.max(B);
-            B.remove(Integer.valueOf(y));
-
-            sum += (x * y);
-        }
-
-        return sum;
-    }
-
-
-
-
-
+		return answer;
+	}
+	
 }
