@@ -1,78 +1,71 @@
 /*
-BruteForce && bit_mask 
+DFS && 백트랙킹 
 */
 
 
-import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.IOException;
 import java.io.BufferedReader;
-
-import java.util.List;
-import java.util.ArrayList;
-
 
 public class Main {
 	static int N;
 	static int[][] S;
+	static boolean[] selected;
+	static int min_diff = Integer.MAX_VALUE;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
 		S = new int[N][N];
+		selected = new boolean[N];
+		
 		for (int r = 0; r < N; r++) {
 			String[] cols = br.readLine().split(" ");
 			for (int c = 0; c < N; c++) {
 				S[r][c] = Integer.parseInt(cols[c]);
 			}
 		}
-		find_min_diff();
-	}
-	
-	
-	static void find_min_diff() {
-		int min_diff = Integer.MAX_VALUE;
-		
-		for (int mask = 0; mask < (1<<N); mask++) {
-			if (Integer.bitCount(mask) == N/2) {
-				List<Integer> start = new ArrayList<>();
-				List<Integer> link = new ArrayList<>();
-				for (int i = 0; i < N; i++) {
-					if ( (mask & (1<<i)) != 0 ) {
-						start.add(i);
-					}
-					else link.add(i);
-				}
-				min_diff = Math.min(min_diff, diff(start, link));
-			}
-		}
+		dfs(0, 0);
 		System.out.println(min_diff);
 	}
 	
 	
-	
-	
-	static int diff(List<Integer> start, List<Integer> link) {
-		int res = 0;
-		int start_sum = 0;
-		int link_sum = 0;
-		
-		for (int i : start) {
-			for (int j : start) {
-				start_sum += S[i][j];
-			}
+	static void dfs(int idx, int cnt) {
+		// 조건에 맞으면 계산
+		if (cnt == N/2) {
+			check_diff();
+			return;
 		}
 		
-		for (int i : link) {
-			for (int j : link) {
-				link_sum += S[i][j];
-			}
-		}
-
-		res = Math.abs(start_sum - link_sum);
-		return res;
+		// 가지치기
+		if (idx == N) return;
+		
+		// 사람 포함
+		selected[idx] = true;
+		dfs(idx+1, cnt+1);
+		
+		// 사람 미포함
+		selected[idx] = false;
+		dfs(idx+1, cnt);
 	}
 	
 	
+	static void check_diff() {
+		int start_sum = 0;
+		int link_sum = 0;
+		
+		for (int r = 0; r < N; r++) {
+			for (int c = 0; c < N; c++) {
+				if (selected[r] && selected[c]) {
+					start_sum += S[r][c];
+				}
+				else if (!selected[r] && !selected[c]) {
+					link_sum += S[r][c];
+				}
+			}
+		}
+		min_diff = Math.min(min_diff, Math.abs(start_sum - link_sum));
+	}
 	
 	
 }
