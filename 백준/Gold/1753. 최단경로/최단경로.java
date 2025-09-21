@@ -39,15 +39,19 @@ public class Main {
 			int w = Integer.parseInt(uvw[2]);
 			graph[u].add(new int[] {v, w});
 		}
-		solve();
+		solve();	
 	}
+	
+	
 	
 	
 	
 	
 	static void solve() {
 		dist = new int[V+1];
-		Arrays.fill(dist,  Integer.MAX_VALUE);
+		Arrays.fill(dist, Integer.MAX_VALUE);
+		
+		// 시작점은 0에서 출발
 		dist[start_node] = 0;
 		
 		// 거리가 작은 것부터 꺼내기 위해
@@ -59,7 +63,7 @@ public class Main {
 			int u = cur[0];
 			int d = cur[1];
 			
-			// 거리가 크면 더 무시
+			// 거리가 더 크면 무시
 			if (d > dist[u]) continue;
 			
 			for (int[] next : graph[u]) {
@@ -72,18 +76,18 @@ public class Main {
 			}
 		}
 		
-		
 		// res
 		for (int i = 1; i < dist.length; i++) {
 			if (dist[i] < Integer.MAX_VALUE) {
 				System.out.println(dist[i]);
 			}
-			else if (dist[i] == Integer.MAX_VALUE) {
+			else if (dist[i] >= Integer.MAX_VALUE) {
 				System.out.println("INF");
 			}
 		}
 		
 	}
+	
 	
 	
 }
