@@ -1,44 +1,47 @@
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import java.util.StringTokenizer;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        // 도시 갯수
-        int N = Integer.parseInt(br.readLine());
-
-        long[] dist = new long[N-1]; // 거리
-        long[] cost = new long[N]; // 비용
-
-        // 거리 입력
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < N-1; i++) {
-            dist[i] = Long.parseLong(st.nextToken());
-        }
-
-
-        // 리터당 기름 입력
-        st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < N; i++) {
-            cost[i] = Long.parseLong(st.nextToken());
-        }
-
-        long sum = 0;
-        long min_cost = cost[0];
-
-        // 주유 최소비용
-        for (int i = 0; i < N-1; i++) {
-            // 현재 값보다 저렴하면 갱신
-            if (cost[i] < min_cost) {
-                min_cost = cost[i];
-            }
-            sum += (min_cost * dist[i]);
-
-        }
-
-        System.out.println(sum);
-    }
+	static int[] dist, price;
+	static int min_cost = Integer.MAX_VALUE;
+	static int total_dist = 0;
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		String[] dist_arr = br.readLine().split(" ");
+		String[] price_arr = br.readLine().split(" ");
+		dist = new int[dist_arr.length + 1];
+		price = new int[N];
+		for (int i = 0; i < dist.length-1; i++) {
+			dist[i] = Integer.parseInt(dist_arr[i]);
+			total_dist += dist[i];
+		}
+		for (int i = 0; i < price.length; i++) {
+			price[i] = Integer.parseInt(price_arr[i]);
+		}
+		
+		what_is_the_answer();
+	}
+	
+	
+	
+	
+	static void what_is_the_answer() {
+		min_cost = dist[0] * price[0];
+		total_dist -= dist[0];
+		for (int i = 1; i < dist.length-1; i++) {
+			if (price[i] <= price[i+1]) {
+				if (total_dist >= 0) {
+					min_cost += (price[i] * total_dist);
+					total_dist = 0;
+				}
+			}
+		}
+		System.out.println(min_cost);
+	}
+	
+	
+	
 }
