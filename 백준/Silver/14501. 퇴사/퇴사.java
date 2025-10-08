@@ -7,31 +7,29 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
-		int[] T = new int[N];
-		int[] P = new int[N];
+		int[][] arr = new int[N][2];
 		for (int i = 0; i < N; i++) {
-			String[] TP = br.readLine().split(" ");
-			T[i] = Integer.parseInt(TP[0]);
-			P[i] = Integer.parseInt(TP[1]); 
+			String[] day_value = br.readLine().split(" ");
+			int day = Integer.parseInt(day_value[0]);
+			int value = Integer.parseInt(day_value[1]);
+			arr[i][0] = day;
+			arr[i][1] = value;
 		}
 		
-		int max_profit = 0;
-		for (int mask = 0; mask < (1<<N); mask++) {
-			int temp_sum_profit = 0;
-			int start_day_available = -1;
-			for (int bit = 0; bit < N; bit++) {
-				if ( (mask & (1<<bit)) != 0 ) {
-					if (start_day_available < bit) {
-						if (bit + T[bit] < N+1) {
-							start_day_available = bit + T[bit] -1;
-							temp_sum_profit += P[bit];
-						}
-					}
-					
-				}
+		// recursive_formula
+		int[] DP = new int[N+1];
+		for (int i = 0; i < N; i++) {
+			int day = arr[i][0];
+			int value = arr[i][1];
+			
+			DP[i+1] = Math.max(DP[i], DP[i+1]);
+			if (i + day <= N) {
+				DP[i+day] = Math.max(DP[i+day], DP[i] + value);
 			}
-			max_profit = Math.max(max_profit, temp_sum_profit);
+			
 		}
-		System.out.println(max_profit);
+		
+		// result
+		System.out.println(DP[N]);
 	}
 }
