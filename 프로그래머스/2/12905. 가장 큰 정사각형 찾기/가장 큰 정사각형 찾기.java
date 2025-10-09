@@ -3,19 +3,20 @@ class Solution
     public int solution(int [][]board)
     {
         int answer = 1234;
-
+		
         int R = board.length;
         int C = board[0].length;
         
+        // DP
         int[][] DP = new int[R+1][C+1];
         for (int r = 1; r < R+1; r++) {
-            for (int c = 1; c < C+1; c++) {
+            for (int c =1; c < C+1; c++) {
                 DP[r][c] = board[r-1][c-1];
             }
         }
         
         // recursive_formula
-        int max_val = Integer.MIN_VALUE;
+        int max_val = 0;
         for (int r = 1; r < R+1; r++) {
             for (int c = 1; c < C+1; c++) {
                 if (DP[r][c] == 1) {
@@ -24,8 +25,10 @@ class Solution
                 }
             }
         }
-        
+    	
         answer = max_val * max_val;
+        
+        
         return answer;
     }
 }
