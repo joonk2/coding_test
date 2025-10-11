@@ -1,58 +1,53 @@
-/*
-백트랙킹
-*/
-
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 
 public class Main {
 	static int N, M;
 	static int max_size = Integer.MIN_VALUE;
-	static int[] snowball_arr;
+	static int[] a;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String[] NM = br.readLine().split(" ");
-		String[] arr = br.readLine().split(" ");
-		
 		N = Integer.parseInt(NM[0]);
 		M = Integer.parseInt(NM[1]);
-		snowball_arr = new int[N+1];
-		for (int i = 1; i < N+1; i++) {
-			snowball_arr[i] = Integer.parseInt(arr[i-1]);
+		String[] s_arr = br.readLine().split(" ");
+		a = new int[N];
+		for (int i = 0; i < N; i++) {
+			a[i] = Integer.parseInt(s_arr[i]);
 		}
-		
-		dfs(0, 0, 1);
+		back_tracking(-1,0,1);
 		System.out.println(max_size);
 	}
 	
 	
 	
-	static void dfs(int idx, int time, int cur_size) {
+	
+	static void back_tracking(int idx, int t, int cur_size) {
 		
-		// 최대 시간 or 최대 깊이 도달시 --> 최대 크기 갱신하고 종료
-		if (time == M || idx == N+1) {
-			max_size = Math.max(max_size, cur_size);
+		// renewal
+		max_size = Math.max(cur_size, max_size);
+		
+		// pruning
+		if (idx >= N-1) {
 			return;
 		}
 		
-		// 눈덩이 최대크기 상시 갱신
-		max_size = Math.max(max_size, cur_size);
-		
-		// 1칸 굴리기
-		if (idx + 1 < N+1) {
-			dfs(idx+1, time+1, cur_size + snowball_arr[idx+1]);
+		// pruning
+		if (t == M) {
+			return;
 		}
 		
-		// 2칸 굴리기
-		if (idx + 2 < N+1) {
-			dfs(idx+2, time+1, (cur_size / 2) + snowball_arr[idx+2]);
+		if (idx + 1 < N) {
+			back_tracking(idx+1, t+1, cur_size + a[idx+1]);
 		}
 		
+		if (idx + 2 < N) {
+			back_tracking(idx+2, t+1, (cur_size/2) + a[idx+2]);
+		}
 	}
-	
 	
 	
 }
