@@ -1,6 +1,6 @@
 import java.io.IOException;
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 
 public class Main {
@@ -11,60 +11,43 @@ public class Main {
 		String[] s2 = br.readLine().split(" ");
 		int[] original = new int[N];
 		int[] target = new int[N];
+		
 		for (int i = 0; i < N; i++) {
 			original[i] = Integer.parseInt(s1[i]);
 			target[i] = Integer.parseInt(s2[i]);
 		}
-		int[] reverse = new int[N];
+		
+		// 회전배열을 시작할 기준값의 idx 탐색
+		// original[0]을 target[idx]에서 기준값으로 시작하자
+		int idx = 0;
 		for (int i = 0; i < N; i++) {
-			reverse[i] = original[N-1-i];
+			if (target[i] == original[0]) {
+				idx = i;
+			}
 		}
 		
-		int[] original_extended = new int[N*2];
-		int[] reverse_extended = new int[N*2];
-		for (int i = 0; i < N*2; i++) {
-			original_extended[i] = original[i%N];
-			reverse_extended[i] = reverse[i%N];
+		boolean clock_ok = true;
+		boolean clockwise_ok = true;
+		for (int i = 0; i < N; i++) {
+			int clock_i = (idx + i) % N;
+			int clockwise_i = (idx - i + N) % N;
+			
+			if (target[clock_i] != original[i]) {
+				clock_ok = false;
+			}
+			if (target[clockwise_i] != original[i]) {
+				clockwise_ok = false;
+			}
 		}
 		
-		lets_see(original_extended, reverse_extended, target, N);
-	}
-	
-	
-	
-	
-	
-	static void lets_see(int[] original_extended, int[] reverse_extended, int[] target, int N) {
-		boolean is_good_puzzle = false;
-		for (int i = 0; i < N; i++) {
-			boolean is_matching_o = true;
-			boolean is_matching_r = true;
-			for (int j = i; j < N+i; j++) {
-				if (original_extended[j] != target[j-i]) {
-					is_matching_o = false;
-					break;
-				}
-			}
-			for (int j = i; j < N+i; j++) {
-				if (reverse_extended[j] != target[j-i]) {
-					is_matching_r = false;
-					break;
-				}
-			}
-			// check
-			if (is_matching_o == true || is_matching_r == true) {
-				is_good_puzzle = true;
-				break;
-			}
-		}
-		if (is_good_puzzle) {
+		// result
+		if (clock_ok || clockwise_ok) {
 			System.out.println("good puzzle");
 		}
 		else {
 			System.out.println("bad puzzle");
 		}
+		
+		
 	}
-	
-	
-	
 }
