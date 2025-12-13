@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 31120 KB, 시간: 36 ms
+메모리: 11512 KB, 시간: 64 ms
 
 ### 분류
 
@@ -12,21 +12,21 @@
 
 ### 제출 일자
 
-2024년 9월 11일 13:36:30
+2025년 12월 13일 11:53:28
 
 ### 문제 설명
 
-<p>Mirko works in a sugar factory as a delivery boy. He has just received an order: he has to deliver exactly N kilograms of sugar to a candy store on the Adriatic coast. Mirko can use two types of packages, the ones that contain 3 kilograms, and the ones with 5 kilograms of sugar.</p>
+<p>상근이는 요즘 설탕공장에서 설탕을 배달하고 있다. 상근이는 지금 사탕가게에 설탕을 정확하게 N킬로그램을 배달해야 한다. 설탕공장에서 만드는 설탕은 봉지에 담겨져 있다. 봉지는 3킬로그램 봉지와 5킬로그램 봉지가 있다.</p>
 
-<p>Mirko would like to take as few packages as possible. For example, if he has to deliver 18 kilograms of sugar, he could use six 3-kilogram packages. But, it would be better to use three 5-kilogram packages, and one 3-kilogram package, resulting in the total of four packages.</p>
+<p>상근이는 귀찮기 때문에, 최대한 적은 봉지를 들고 가려고 한다. 예를 들어, 18킬로그램 설탕을 배달해야 할 때, 3킬로그램 봉지 6개를 가져가도 되지만, 5킬로그램 3개와 3킬로그램 1개를 배달하면, 더 적은 개수의 봉지를 배달할 수 있다.</p>
 
-<p>Help Mirko by finding the minimum number of packages required to transport exactly N kilograms of sugar.</p>
+<p>상근이가 설탕을 정확하게 N킬로그램 배달해야 할 때, 봉지 몇 개를 가져가면 되는지 그 수를 구하는 프로그램을 작성하시오.</p>
 
 ### 입력 
 
- <p>The first and only line of input contains one integer N (3 ≤ N ≤ 5000).</p>
+ <p>첫째 줄에 N이 주어진다. (3 ≤ N ≤ 5000)</p>
 
 ### 출력 
 
- <p>The first and only line of output should contain the minimum number of packages Mirko has to use. If it is impossible to deliver exactly N kilograms, output -1.</p>
+ <p>상근이가 배달하는 봉지의 최소 개수를 출력한다. 만약, 정확하게 N킬로그램을 만들 수 없다면 -1을 출력한다.</p>
 
