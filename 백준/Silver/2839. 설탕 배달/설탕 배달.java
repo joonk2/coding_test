@@ -1,28 +1,34 @@
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
-		
-		int cnt = 0;
-		while (N > 0) {
-			if (N % 5 == 0) {
-				cnt += (N / 5);
-				N /= 5;
-				break;
-			}
-			
-			N -= 3;
-			cnt++;
-		}
-		
-		if (N < 0) {
-			System.out.println(-1);
-			return;
-		}
-		System.out.println(cnt);
+		int res = find_solution(N);
+		System.out.println(res);
 	}
+	
+	
+	public static int find_solution(int N) {
+		int res = -1;
+		int temp_val = Integer.MAX_VALUE;
+		int sugar_5kg = 5;
+		int sugar_3kg = 3;
+		
+		for (int x = 0; x < 5001; x++) {
+			for (int y = 0; y < 5001; y++) {
+				if ( (sugar_5kg * x) + (sugar_3kg * y) == N) {
+					temp_val = Math.min(temp_val, x+y);
+				}
+			}
+		}
+		if (temp_val < Integer.MAX_VALUE) {
+			res = temp_val;
+		}
+		
+		return res;
+	}
+	
 }
