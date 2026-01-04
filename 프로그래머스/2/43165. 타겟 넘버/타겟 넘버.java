@@ -1,27 +1,24 @@
 class Solution {
-    static int answer;
     static int N;
+    static int answer;
+    
+    
     public int solution(int[] numbers, int target) {
         answer = 0;
         N = numbers.length;
-        
-        dfs(0, 0, target, numbers);
+        back_tracking(0, 0, target, numbers);
         return answer;
     }
     
-    static void dfs(int idx, int val, int target, int[] numbers) {
-        
-        // pruning
-        if (idx == N && val == target) {
+    
+    
+    static void back_tracking(int idx, int cum_sum, int target, int[] numbers) {
+        if (idx == N && cum_sum == target) {
             answer++;
-            return;
         }
-        else if (idx == N) {
-            return;
-        }
-        
-        dfs(idx+1, val + numbers[idx], target, numbers);
-        dfs(idx+1, val - numbers[idx], target, numbers);
+        if (idx == N) return;
+        back_tracking(idx+1, cum_sum + numbers[idx], target, numbers);
+        back_tracking(idx+1, cum_sum - numbers[idx], target, numbers);
     }
     
     
