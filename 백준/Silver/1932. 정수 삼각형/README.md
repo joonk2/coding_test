@@ -1,10 +1,10 @@
-# [Silver II] 정수 삼각형 - 1932 
+# [Silver I] 정수 삼각형 - 1932 
 
 [문제 링크](https://www.acmicpc.net/problem/1932) 
 
 ### 성능 요약
 
-메모리: 35612 KB, 시간: 120 ms
+메모리: 30660 KB, 시간: 248 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2024년 9월 19일 19:50:52
+2026년 1월 15일 15:53:13
 
 ### 문제 설명
 
@@ -20,21 +20,19 @@
       3   8
     8   1   0
   2   7   4   4
-4   5   2   6   5 (Figure 1)</pre>
+4   5   2   6   5</pre>
 
-<p>Figure 1 shows a number triangle. Write a program that calculates the highest sum of numbers passed on a route that starts at the top and ends somewhere on the base.</p>
+<p>위 그림은 크기가 5인 정수 삼각형의 한 모습이다.</p>
 
-<ul>
-	<li>Each step can go either diagonally down to the left or diagonally down to the right.</li>
-	<li>The number of rows in the triangle is ≥ 1 but ≤ 500.</li>
-	<li>The numbers in the triangle, all integers, are between 0 and 9999 (inclusive).</li>
-</ul>
+<p>맨 위층 7부터 시작해서 아래에 있는 수 중 하나를 선택하여 아래층으로 내려올 때, 이제까지 선택된 수의 합이 최대가 되는 경로를 구하는 프로그램을 작성하라. 아래층에 있는 수는 현재 층에서 선택된 수의 대각선 왼쪽 또는 대각선 오른쪽에 있는 것 중에서만 선택할 수 있다.</p>
+
+<p>삼각형의 크기는 1 이상 500 이하이다. 삼각형을 이루고 있는 각 수는 모두 정수이며, 범위는 0 이상 9999 이하이다.</p>
 
 ### 입력 
 
- <p>Data about the number of rows in the triangle are first read from the input.</p>
+ <p>첫째 줄에 삼각형의 크기 n(1 ≤ n ≤ 500)이 주어지고, 둘째 줄부터 n+1번째 줄까지 정수 삼각형이 주어진다.</p>
 
 ### 출력 
 
- <p>The highest sum is written as an integer in the output.</p>
+ <p>첫째 줄에 합이 최대가 되는 경로에 있는 수의 합을 출력한다.</p>
 
