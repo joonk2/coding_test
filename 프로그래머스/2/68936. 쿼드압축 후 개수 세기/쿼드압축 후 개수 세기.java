@@ -4,48 +4,47 @@ class Solution {
     
     public int[] solution(int[][] arr) {
         int N = arr.length;
-        quad_tree(0, 0, N, arr);
+        
+    	back_tracking(0, 0, N, arr);    
         return answer;
     }
     
     
-    static void quad_tree(int r, int c, int size, int[][] arr) {
-        
-        // 1. 전부 같은지 확인 -> 만약 같다면 값 적립후에 종료
-        if (is_all_same(r, c, size, arr)) {
-            answer[ arr[r][c] ]++;
+    
+    static void back_tracking(int r, int c, int N, int[][] arr) {
+        // 1. 먼저 한번에 축소시킬 수 있는지 확인하겠다.
+        if(is_all_same(r, c, N, arr)) {
+            int val = arr[r][c];
+            answer[val]++;
             return;
         }
-		
         
-        // 2. 만약 값이 같지 않다면 분할
-        int new_size = size / 2;
+        // 2. 그렇지 않고, 한번에 축소시킬 수 없겠다?
+        int new_size = N / 2;
         
         // 2-1. 왼쪽 위
-        quad_tree(r, c, new_size, arr);
+        back_tracking(r, c, new_size, arr);
         
         // 2-2. 오른쪽 위
-        quad_tree(r, c + new_size, new_size, arr);
+        back_tracking(r, c + new_size, new_size, arr);
         
         // 2-3. 왼쪽 아래
-        quad_tree(r + new_size, c, new_size, arr);
+        back_tracking(r + new_size, c, new_size, arr);
         
         // 2-4. 오른쪽 아래
-        quad_tree(r + new_size, c + new_size, new_size, arr);  
+        back_tracking(r + new_size, c + new_size, new_size, arr);
     }
     
     
-	
     static boolean is_all_same(int r, int c, int size, int[][] arr) {
-        int cur_val = arr[r][c];
+        int first_val = arr[r][c];
         for (int i = r; i < r + size; i++) {
             for (int j = c; j < c + size; j++) {
-                if (arr[i][j] != cur_val) return false;
+                if (arr[i][j] != first_val) return false;
             }
         }
         return true;
     }
-    
     
     
 }
