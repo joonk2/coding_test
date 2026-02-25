@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     public int solution(int[][] board, int[][] skill) {
         int cnt = 0;
@@ -7,11 +5,8 @@ class Solution {
         int row = board.length;
         int col = board[0].length;
         
-        // 차분을 이용하자
-        // 이후 마지막 idx인 row, col은 이용하지않는다
-        // idx는 누적합시 row-1, col-1 까지만 이용하자
+        // 변화랑
         long[][] diff = new long[row+1][col+1];
-        
         
         int T = skill.length;
         for (int t = 0; t < T; t++) {
@@ -23,21 +18,19 @@ class Solution {
             int degree = skill[t][5];
             
             // 공격일때 음수처리
-            if (type == 1) {
-                degree = -degree;
-            }
+            if (type == 1) degree = -degree;
             
-            // 1-1. 왼쪽 맨위끝 모서리
+            // 1-1. 왼쪽 맨위 끝 모서리
             diff[sr][sc] += degree;
             
-            // 1-2. 왼쪽 맨위 우측끝 모서리
+            // 1-2. 왼쪽 맨위 우측 끝 모서리
             diff[sr][ec+1] += -degree;
             
-            // 1-3. 왼쪽 맨아래 맨밑 모서리
+            // 1-3. 왼쪽 맨 아래
             diff[er+1][sc] += -degree;
             
-            // 1-4. 맨 오른쪽 밑 끝 모서리
-            diff[er+1][ec+1] += degree;
+            // 1-4. 맨오른쪽 밑 아래
+            diff[er+1][ec+1] += degree; 
         }
         
         
@@ -55,13 +48,13 @@ class Solution {
             }
         }
         
-        // 4. 결과
+         // 4. 결과를 보자
         for (int r = 0; r < row; r++) {
             for (int c = 0; c < col; c++) {
                 if (board[r][c] + diff[r][c] > 0) cnt++;
             }
         }
-        
+
         return cnt;
     }
 }
