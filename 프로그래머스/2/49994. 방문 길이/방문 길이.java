@@ -9,10 +9,10 @@ class Solution {
         
         int N = dirs.length();
         char[] commands = new char[N];
-        for (int i = 0; i < N; i++) commands[i] = dirs.charAt(i);
+        for (int i = 0; i < N; i++) commands[i] =  dirs.charAt(i);
         
         // 1. 초기 시작
-        boolean[][][] visited = new boolean[10 + 1][10 + 1][4];
+        boolean[][][] visited = new boolean[10 + 1][10 + 1][444 + 1];
         int cr = 5;
         int cc = 5;
         int i = 0;
@@ -26,44 +26,43 @@ class Solution {
             if (cur_button == 'U') {
                 dr = -1;
                 dc = 0;
-                dd = 0;
+                dd = 111;
             }
             else if (cur_button == 'D') {
-            	dr = 1;
+                dr = 1;
                 dc = 0;
-                dd = 1;
+                dd = 222;
             }
             else if (cur_button == 'R') {
                 dr = 0;
                 dc = 1;
-                dd = 2;
+                dd = 333;
             }
             else if (cur_button == 'L') {
                 dr = 0;
                 dc = -1;
-                dd = 3;
+                dd = 444;
             }
             
-            // 다음 좌표
+            // 다음좌표
             int nr = cr + dr;
             int nc = cc + dc;
             int nd = dd;
             
-            
-            // 2. 범위 밖 -> 다음으로 전환 후, skip
+            // 범위 밖 -> 다음으로 전환하고 skip
             if (nr < sr || nr > er || nc < sc || nc > ec) {
                 i++;
                 continue;
             }
             
-            // 3. 양방향 값 확인
+            // 양방향 값을 확인하기위해 반대 방향도 추가하겠다
             int reverse_d = 0;
-            if (nd == 0) reverse_d = 1;
-            else if (nd == 1) reverse_d = 0;
-            else if (nd == 2) reverse_d = 3;
-            else if (nd == 3) reverse_d = 2;
+            if (nd == 111) reverse_d = 222;
+            else if (nd == 222) reverse_d = 111;
+            else if (nd == 333) reverse_d = 444;
+            else if (nd == 444) reverse_d = 333;
             
-            // 4. 방문했다면 좌표를 갱신하고, 다음으로 전환하고 skip
+            // 방문을 했어? -> 그렇다면 좌표만 갱신하고 다음으로 전환하고 skip
             if (visited[nr][nc][nd] || visited[cr][cc][reverse_d]) {
                 cr = nr;
                 cc = nc;
@@ -71,13 +70,12 @@ class Solution {
                 continue;
             }
             
-            // 5. 양방향 방문 후에, 좌표 갱신
+            // new thing -> 양방향을 방문한 다음에 좌표를 갱신하고, 길이를 추가한다음 다음으로 전환하자.
             visited[nr][nc][nd] = true;
             visited[cr][cc][reverse_d] = true;
-            
-            leng++;
             cr = nr;
             cc = nc;
+            leng++;
             i++;
         }
         
