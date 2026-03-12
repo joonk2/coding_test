@@ -3,12 +3,13 @@ class Solution {
         int[] arr = new int[(int) (right-left) + 1];
         
         int idx = 0;
+        
         while (left <= right) {
             int mod = (int) (left / n);
             int remainder = (int) (left % n);
             
             if (mod < remainder) {
-                arr[idx] = remainder + 1;
+                arr[idx] = remainder+1;
                 left++;
                 idx++;
             }
@@ -18,9 +19,6 @@ class Solution {
                 idx++;
             }
         }
-        
-        
-        
         
         return arr;
     }
