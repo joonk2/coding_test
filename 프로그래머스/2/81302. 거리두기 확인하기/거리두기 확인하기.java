@@ -62,7 +62,7 @@ class Solution {
                 int nc = cc + dc[d];
                 
                 // 범위 밖 -> 볼 필요없으니 break
-                if (nr < 0 || nr >= row || nc < 0 || nc >= col) break;
+                if (nr < 0 || nr >= row || nc < 0 || nc >= col) continue;
                 
                 // 범위 내
                 // 파티션이 있다면?
