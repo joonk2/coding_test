@@ -1,10 +1,12 @@
+import java.util.Arrays;
+
 class Solution {
     public int solution(String name) {
         int cnt = 0;
         int N = name.length();
         
         
-        // 1. 상, 하
+        // 1. 상, 하 (알파벳 변경)
         for (int i = 0; i < N; i++) {
             char ch = name.charAt(i);
             int down = ch - 'A';
@@ -14,23 +16,19 @@ class Solution {
             cnt += diff_1;
         }
         
-        // 2. 좌, 우
-        int move = N-1;
+        // 2. 좌, 우 (커서 이동)
+        int group_A = -1;
+        int cnt_dir = -1;
         for (int i = 0; i < N; i++) {
-            int next = i+1;
-            while (next < N && name.charAt(next) == 'A') {
-                next++;
-            }
-            
-            // 오른쪽으로 끝까지 다돌기 vs 오른쪽으로 가다가 u턴 + 왼쪽으로 거꾸로
-            move = Math.min(move, i*2 + (N-next));
-            
-            // 오른쪽으로 끝까지 다돌기 vs 왼쪽 뒤 가다가 u턴 + 오른쪽으로
-            move = Math.min(move, (N-next)*2 + i);
+            int x = name.charAt(i) - 'A';
+            if (x == 0) group_A++;
+            else cnt_dir++;
         }
         
-        cnt += move;
+        if (group_A == -1) group_A = 0;
         
+        cnt += (group_A + cnt_dir);
+        System.out.println(group_A + " " + cnt_dir);
         return cnt;
     }
 }
