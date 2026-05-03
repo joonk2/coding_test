@@ -1,50 +1,55 @@
 class Solution {
-    static int[] answer = new int[2];
-    
+    static int[] answer;
     
     public int[] solution(int[][] arr) {
+        answer = new int[2];
+        int sr = 0;
+        int sc = 0;
         int N = arr.length;
         
-    	back_tracking(0, 0, N, arr);    
+        back_tracking(sr, sc, N, arr);
         return answer;
     }
     
     
     
-    static void back_tracking(int r, int c, int N, int[][] arr) {
-        // 1. 먼저 한번에 축소시킬 수 있는지 확인하겠다.
-        if(is_all_same(r, c, N, arr)) {
-            int val = arr[r][c];
-            answer[val]++;
+    static void back_tracking(int r, int c, int cur_size, int[][] arr) {
+        // 1. 첫 원소
+        int first_val = arr[r][c];
+        
+        // 1. 검사
+        if (is_all_same(first_val, r, c, cur_size, arr)) {
+            answer[first_val]++;
             return;
         }
         
-        // 2. 그렇지 않고, 한번에 축소시킬 수 없겠다?
-        int new_size = N / 2;
+        // 2. 4방향 탐색
+        int new_size = cur_size / 2;
         
-        // 2-1. 왼쪽 위
+        // 2-1 왼위
         back_tracking(r, c, new_size, arr);
         
-        // 2-2. 오른쪽 위
-        back_tracking(r, c + new_size, new_size, arr);
+        // 2-2. 오위
+        back_tracking(r, c+new_size, new_size, arr);
         
-        // 2-3. 왼쪽 아래
-        back_tracking(r + new_size, c, new_size, arr);
+        // 2-3. 왼아래
+        back_tracking(r+new_size, c, new_size, arr);
         
-        // 2-4. 오른쪽 아래
-        back_tracking(r + new_size, c + new_size, new_size, arr);
+        // 2-4 오아래
+        back_tracking(r+new_size, c+new_size, new_size, arr);
     }
     
     
-    static boolean is_all_same(int r, int c, int size, int[][] arr) {
-        int first_val = arr[r][c];
-        for (int i = r; i < r + size; i++) {
-            for (int j = c; j < c + size; j++) {
-                if (arr[i][j] != first_val) return false;
+    static boolean is_all_same(int val, int r, int c, int cur_size, int[][] arr) {
+        for (int i = r; i < r + cur_size; i++) {
+            for (int j = c; j < c + cur_size; j++) {
+                if (arr[i][j] != val) return false;
             }
         }
+        
         return true;
     }
+    
     
     
 }
