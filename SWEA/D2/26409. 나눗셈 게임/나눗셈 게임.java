@@ -17,14 +17,12 @@ public class Solution {
 			
 			// 1. 배열 생성
 			int sum = 0;
-			int[][] arr = new int[N][N];
 			for (int r = 0; r < N; r++) {
 				for (int c = 0; c < N; c++) {
 					if (r == c) continue;
 					
 					int temp_val = num[r] % num[c];
-					arr[r][c] = temp_val;
-					sum += arr[r][c];
+					sum += temp_val;
 				}
 			}
 			
