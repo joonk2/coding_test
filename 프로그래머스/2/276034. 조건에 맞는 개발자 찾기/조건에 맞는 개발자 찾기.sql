@@ -1,18 +1,21 @@
-SELECT ID, EMAIL, FIRST_NAME, LAST_NAME
-FROM DEVELOPERS
+select ID, EMAIL, FIRST_NAME, LAST_NAME
+from DEVELOPERS
 
-WHERE (SKILL_CODE & 
-       (SELECT CODE
-       FROM SKILLCODES
-       WHERE NAME = 'Python')
-      ) >= 1
+where 
+(SKILL_CODE & (select CODE
+from SKILLCODES
+where NAME = "Python")
+) >= 1
+or
+(SKILL_CODE & (select CODE 
+from SKILLCODES
+where NAME = "C#")
+) >= 1
 
-OR 
+order by ID asc
 
-(SKILL_CODE & 
-       (SELECT CODE
-       FROM SKILLCODES
-       WHERE NAME = 'C#')
-      ) >= 1
-      
-ORDER BY ID ASC;
+
+
+
+
+
