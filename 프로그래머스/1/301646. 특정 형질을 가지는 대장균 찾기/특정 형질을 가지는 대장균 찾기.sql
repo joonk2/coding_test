@@ -1,8 +1,9 @@
-SELECT COUNT(*) AS COUNT
-FROM ECOLI_DATA
-WHERE (GENOTYPE & 2) = 0
-AND (
-    (GENOTYPE & 1) = 1
-    OR
-    (GENOTYPE & 4) = 4
+select count(*)
+from ECOLI_DATA
+where
+(2 & GENOTYPE) = 0
+and (
+(1 & GENOTYPE) = 1
+or
+(4 & GENOTYPE) = 4
 )
