@@ -1,15 +1,11 @@
-# 아이템의 희귀도는 PARENT에서 찾는다
-# 서브쿼리에서 찾는게 1개가 아니라 N개라 IN을 사용했다
+select c.ITEM_ID, c.ITEM_NAME, c.RARITY
+from ITEM_INFO a
 
-SELECT B.ITEM_ID, A.ITEM_NAME, A.RARITY
-FROM ITEM_INFO A
+join ITEM_TREE b
+on a.ITEM_ID = b.PARENT_ITEM_ID
 
-JOIN ITEM_TREE B ON A.ITEM_ID = B.ITEM_ID
+join ITEM_INFO c
+on c.ITEM_ID = b.ITEM_ID
 
-WHERE B.PARENT_ITEM_ID IN (
-    SELECT ITEM_ID
-    FROM ITEM_INFO
-    WHERE RARITY = 'RARE'
-)
-
-ORDER BY B.ITEM_ID DESC;
+where a.rarity = "RARE"
+order by c.ITEM_ID desc;
