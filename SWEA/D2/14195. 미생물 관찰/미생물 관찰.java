@@ -1,0 +1,124 @@
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
+// bfs
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+public class Solution {
+	static int[] dr = {-1,1,0,0};
+	static int[] dc = {0,0,-1,1};
+	static int N, M;
+	static char[][] arr;
+	static boolean[][] visited;
+	
+	static int cnt_A;
+	static int cnt_B;
+	static int max_leng_A;
+	static int max_leng_B;
+	static int max_leng;
+	
+	
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int T = Integer.parseInt(br.readLine());
+		for (int tc = 1; tc < T+1; tc++) {
+			String[] NM = br.readLine().split(" ");
+			N = Integer.parseInt(NM[0]);
+			M = Integer.parseInt(NM[1]);
+			arr = new char[N][M];
+			
+			// 1. 배열생성, (글자, visited)
+			for (int r = 0; r < N; r++) {
+				String cols = br.readLine();
+				for (int c = 0; c < M; c++) {
+					arr[r][c] = cols.charAt(c);
+				}
+			}
+			visited = new boolean[N][M];
+			
+			// 2. 완전탐색 + bfs
+			cnt_A = 0;
+			cnt_B = 0;
+			max_leng_A = 0;
+			max_leng_B = 0;
+			max_leng = 0;
+			
+			for (int r = 0; r < N; r++) {
+				for (int c = 0; c < M; c++) {
+					// 2-1. 빈 공간이면 skip
+					if (arr[r][c] == '-') continue;
+					
+					// 2-2. 방문 안했을때 bfs
+					if (!visited[r][c]) {
+						char original = arr[r][c];
+						
+						// 2-3. 찾은 미생물 종류 추가
+						if (original == 'A') cnt_A++;
+						else if (original == 'B') cnt_B++;
+						
+						// 2-4. 미생물 크기 검사
+						int sr = r;
+						int sc = c;
+						bfs(original, sr, sc);
+					}
+				}
+			}
+			
+			// 4. 출력
+			max_leng = Math.max(max_leng_A, max_leng_B);
+			System.out.println("#" + tc + " " + cnt_A + " " + cnt_B + " " + max_leng);
+		}
+	}
+	
+	
+	// 3. bfs
+	static void bfs(char original, int sr, int sc) {
+		int cur_leng = 1;
+		
+		// 3-1. q
+		Queue<int[]> q =  new LinkedList<>();
+		q.add(new int[] {sr, sc});
+		visited[sr][sc] = true;
+		
+		// 3-2. 탐색
+		while (!q.isEmpty()) {
+			int[] cur = q.poll();
+			int cr = cur[0];
+			int cc = cur[1];
+			for (int d = 0; d < 4; d++) {
+				int nr = cr + dr[d];
+				int nc = cc + dc[d];
+				
+				// 3-3. 범위 검사
+				if (nr < 0 || nr >= N || nc < 0 || nc >= M) continue;
+				
+				// 3-4. original과 다르면 skip
+				if (arr[nr][nc] != original) continue;
+				
+				// 3-5. original과 똑같아도 방문했다면 skip
+				if (visited[nr][nc]) continue;
+				
+				// 3-6. original과 같고 방문 안했다면
+				visited[nr][nc] = true;
+				q.add(new int[] {nr, nc});
+				cur_leng++;
+			}
+		}
+		
+		// 3-7. 비교 갱신
+		if (original == 'A') {
+			max_leng_A = Math.max(max_leng_A, cur_leng);
+		}
+		else if (original == 'B') {
+			max_leng_B = Math.max(max_leng_B, cur_leng);
+		}
+		
+	}
+	
+	
+}
