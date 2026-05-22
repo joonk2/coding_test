@@ -1,0 +1,56 @@
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
+
+// test
+import java.util.Arrays;
+
+
+public class Solution {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine());
+		for (int tc = 1; tc < T+1; tc++) {
+			String[] NK = br.readLine().split(" ");
+			int N = Integer.parseInt(NK[0]);
+			int K = Integer.parseInt(NK[1]);
+			int[][] arr = new int[N][2];
+			
+			
+			// 1. 배열 생성
+			for (int i = 0; i < N; i++) {
+				String[] vi_ci = br.readLine().split(" ");
+				int vi = Integer.parseInt(vi_ci[0]);
+				int ci = Integer.parseInt(vi_ci[1]);
+				
+				// 1-1. 부피, 가치
+				arr[i][0] = vi;
+				arr[i][1] = ci;
+			}
+			
+			// 2. 정렬
+			Arrays.sort(arr, (a,b) -> {
+				return Integer.compare(a[0], b[0]);
+			});
+
+			
+			// 3. DP
+			int[] DP = new int[K+1];
+			for (int i = 0; i < N; i++) {
+				int volume = arr[i][0];
+				int c = arr[i][1];
+				// 3-1. 부분집합
+				for (int j = K; j >= volume; j--) {
+					// 3-2. j를 넣기전 이전 무게상태 -> j - volume
+					DP[j] = Math.max(DP[j], DP[j - volume] + c);
+				}
+				
+			}
+			
+			
+			System.out.println("#" + tc + " " + DP[K]);
+			
+		}
+	}
+}
