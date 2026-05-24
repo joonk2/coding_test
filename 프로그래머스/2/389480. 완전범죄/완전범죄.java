@@ -1,53 +1,60 @@
 class Solution {
+    static int INF = Integer.MAX_VALUE;
+    
+    
     public int solution(int[][] info, int n, int m) {
         
-        // 1. 2차원 배열 생성
-        boolean[][] DP = new boolean[n][m];
+        // 1. B기준으로 각 A의 누적흔적 최소
+        int[] DP = new int[m];
         
-        // 2. 초기값, 처음에 A,B 누구도 어떤 것도 훔치지 않았다
-        DP[0][0] = true;
+        // 2. INF 로 초기화하고, 첫값은 0
+        for (int i = 0; i < m; i++) {
+            DP[i] = INF;
+        }
+        DP[0] = 0;
         
         // 3. 검사
         for (int[] cur : info) {
             int a_trace = cur[0];
             int b_trace = cur[1];
             
-            // 3-1. 새로운 배열
-            boolean[][] next_DP = new boolean[n][m];
+            // 3-1. 다음 DP 생성하고, INF 초기화
+            int[] next_DP = new int[m];
+            for (int i = 0; i < m; i++) {
+                next_DP[i] = INF;
+            }
             
-            // 3-2. 완전탐색
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    // 3-3. 방문 안했으면 skip (도둑질한 현황이 없다는 뜻)
-                    if (!DP[i][j]) continue;
-                    
-                    // 3-4. A 혹은 B가 도둑질한 현황이 있다면
-                    
-                    // 3-5. A의 흔적을 더 남길 수 있다면
-                    if (i + a_trace < n) {
-                        next_DP[i + a_trace][j] = true;
-                    }
-                    
-                    // 3-6. B의 흔적을 더 남길 수 있다면
-                    if (j + b_trace < m) {
-                        next_DP[i][j + b_trace] = true;
-                    }
+            
+            // 3-2. 최소값 갱신
+            for (int i = 0; i < m; i++) {
+                // 3-1. 만약 훔치는게 이어지지 못하면 skip
+                if (DP[i] == INF) continue;
+                
+                // 3-2. 그게 아니라면
+                
+                // 3-3. a흔적을 더 남길 수 있다면
+                if (DP[i] + a_trace < n) {
+                    next_DP[i] = Math.min(next_DP[i], DP[i] + a_trace);
+                }
+                
+                // 3-4. b흔적을 더 남길 수 있다면
+                if (i + b_trace < m) {
+                    next_DP[i + b_trace] = Math.min(next_DP[i + b_trace], DP[i]);
                 }
             }
+            
             // 4. 갱신
             DP = next_DP;
         }
         
-        // 5. A의 누적 최소흔적 찾기
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (DP[i][j]) {
-                    return i;
-                }
-            }
+        // 5-1. 출력 (음수처리)
+        int answer = INF;
+        for (int i = 0; i < m; i++) {
+            answer = Math.min(DP[i], answer);
         }
+        if (answer == INF) return -1;
         
-        // 6. A의 누적최소흔적이 없다면
-        return -1;
+        // 5-2. 출력 (음수가 아닐때)
+        return answer;
     }
 }

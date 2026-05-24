@@ -1,10 +1,10 @@
 # [level 2] 완전범죄 - 389480 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/389480) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/389480#qna) 
 
 ### 성능 요약
 
-메모리: 65 MB, 시간: 2.27 ms
+메모리: 63 MB, 시간: 0.20 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 05월 24일 16:00:12
+2026년 05월 24일 23:16:18
 
 ### 문제 설명
 
