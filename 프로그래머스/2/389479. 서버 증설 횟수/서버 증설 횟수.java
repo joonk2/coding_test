@@ -1,40 +1,32 @@
-/*
-[힌트]
-현재의 가동중인 서버 현황을 잘 확인하고, 최소한의 전력을 사용해야한다.
-*/
-
-
 class Solution {
     public int solution(int[] players, int m, int k) {
-        int cnt = 0;
+        int min_cnt = 0;
         
-        int time = 24;
-        // 현재 가동중인 서버 현황
-        int[] DP = new int[time];
-        
-        for (int t = 0; t < time; t++) {
-            // 현재 필요한 서버수
-            int req_server = players[t] / m;
-            int diff = 0;
+        int[] cur_server = new int[24];
+        // 1. 현재 서버 검사
+        for (int i = 0; i < 24; i++) {
+            int cur_mod = players[i] / m;
             
-            // 현재 가동중인 서버 < 현재 필요한 서버수라면??
-            if (DP[t] < req_server) {
-                diff = req_server - DP[t];
-                cnt += diff;
-            }
+            // 2. 만약 현재 서버가 충분하다면 pass
+            if (cur_server[i] >= cur_mod) continue;
             
-            // 현재 가동중인 서버에 k 만큼 전력 추가
-            for (int i = t; i < t + k; i++) {
-                // 범위 초과시 -> skip
-                if (i >= time) continue;
+            // 3. 그렇지 못하다면 서버에 차이만큼 추가
+            int diff = cur_mod - cur_server[i];
+            
+            for (int j = i; j < i + k; j++) {
+                // 3-1. 범위 넘어가면 멈춤
+                if (j >= 24) break;
                 
-                // 그게 아니라면
-                DP[i] += diff;
+                // 3-2. 차이만큼 서버에 추가
+                cur_server[j] += diff;
             }
+            
+            // 4. 횟수에 추가
+            min_cnt += diff;
+            
             
         }
         
-        
-        return cnt;
+        return min_cnt;
     }
 }
