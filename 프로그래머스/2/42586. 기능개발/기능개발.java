@@ -11,32 +11,30 @@ class Solution {
         }
         
         // 2. 종료시간 배열 값 추가
+        // 우선 첫 값만 삽입
         int size_idx = 0;
-        int start_idx = 0;
-        while (start_idx < N) {
-            int temp_cnt = 1;
-            for (int next_idx = start_idx + 1; next_idx < N; next_idx++) {
-                // 2-1. 만약 현재 숫자보다 다음 숫자가 작거나 같다면
-                if (end_time[start_idx] >= end_time[next_idx]) {
-                    temp_cnt++;
-                }
-                // 2-2. 더 크면 break
-                else if (end_time[start_idx] < end_time[next_idx]) break;
+        answer[size_idx]++;
+        int max_num = end_time[size_idx];
+        for (int i = 1; i < N; i++) {
+            // 3. 이전값보다 작거나 같으면 삽입
+            if (end_time[i] <= max_num) {
+                answer[size_idx]++;
             }
-            
-            // 2-3. 배열에 추가
-            answer[size_idx] += temp_cnt;
-            size_idx++;
-            
-            // 2-4. 다음 시작 idx 갱신
-            start_idx += temp_cnt;
+            // 4. 크다면 가장 큰 수 갱신
+            else if (end_time[i] > max_num) {
+                max_num = end_time[i];
+                size_idx++;
+                answer[size_idx]++;
+            }
         }
         
-        // 3. 결과 배열 반환
-        int[] res = new int[size_idx];
-        for (int i = 0; i < size_idx; i++) {
+        // 5. 정답 배열
+        int[] res = new int[size_idx+1];
+        for (int i = 0; i < size_idx+1; i++) {
             res[i] = answer[i];
         }
+        
+        System.out.println(size_idx);
         
         return res;
     }
