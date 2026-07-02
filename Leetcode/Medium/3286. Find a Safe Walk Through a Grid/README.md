@@ -83,8 +83,8 @@
 | Status | Accepted |
 | Language | Java |
 | Runtime | 31 ms (36.89%) |
-| Memory | 47 MB (56.97%) |
-| Submission ID | 2053269255 |
+| Memory | 46.9 MB (70.49%) |
+| Submission ID | 2053274733 |
 
 ---
 
