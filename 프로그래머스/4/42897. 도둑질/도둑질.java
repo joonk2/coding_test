@@ -17,7 +17,7 @@ class Solution {
         
         // 2. N >= 4
         int[] DP_0 = new int[N];
-        int[] DP_1 = new int[N];
+        int[] DP_x = new int[N];
         
         // 2-1. 0번째 집 선택
         DP_0[0] = money[0];
@@ -27,14 +27,14 @@ class Solution {
         }
         
         // 2-2. 0번쨰 집 선택X
-        DP_1[1] = money[1];
-        DP_1[2] = Math.max(money[1], money[2]);
+        DP_x[1] = money[1];
+        DP_x[2] = Math.max(money[1], money[2]);
         for (int i = 3; i < N; i++) {
-            DP_1[i] = Math.max(DP_1[i-1], DP_1[i-2] + money[i]);
+            DP_x[i] = Math.max(DP_x[i-1], DP_x[i-2] + money[i]);
         }
         
         // 3. 비교
-        answer = Math.max(DP_0[N-2], DP_1[N-1]);
+        answer = Math.max(DP_0[N-2], DP_x[N-1]);
         return answer;
     }
 }
