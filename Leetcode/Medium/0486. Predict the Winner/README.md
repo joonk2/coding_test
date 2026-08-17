@@ -54,9 +54,9 @@ Finally, player 1 has more score (234) than player 2 (12), so you need to return
 | --- | --- |
 | Status | Accepted |
 | Language | Java |
-| Runtime | 151 ms (5.07%) |
-| Memory | 42.4 MB (93.22%) |
-| Submission ID | 2095904764 |
+| Runtime | 1 ms (34.86%) |
+| Memory | 42.8 MB (54.57%) |
+| Submission ID | 2110249186 |
 
 ---
 
