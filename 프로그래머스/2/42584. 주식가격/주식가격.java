@@ -3,84 +3,99 @@ prices = {1,3,2,3,6,4,5,2,1}
 result = {8,1,6,4,1,2,1,1,0}
 */
 
+import java.util.Arrays;
 
 class Solution {
     public int[] solution(int[] prices) {
         int N = prices.length;
-        int[] res = new int[N];
+        int[] answer = new int[N];
         
-        // 1. stack 선언
-        my_stack stack_v1 = new my_stack(N);
-        
-        // 2. prices[i]의 idx를 가격이 떨어지기 전까지 몇초동안 유지되는지?
-        // 현재 가격이 stack에 저장된 마지막 가격보다 작으면 stack에 있는 idx 추출
-        for (int i = 0; i < N; i++) {
-            // 2-1. stack이 비어있지 않고 && 현재 가격 < stack의 마지막가격 일때
-            int cur_price = prices[i];
-            while (!stack_v1.isEmpty() && prices[stack_v1.peek()] > cur_price) {
-                int idx = stack_v1.pop();
-                res[idx] = i - idx;
-            }
-            // 2-2. stack에 현재 idx 추가
-            stack_v1.push(i);
-        }
-        
-        // 3. 스택 안에 남은 원소들 마저 제거
-        while (!stack_v1.isEmpty()) {
-            int idx = stack_v1.pop();
-            res[idx] = N-1 - idx;
-        }
-        
+        // 1. 판별기
+        int[] res = my_converter(prices, N, answer);
         
         return res;
     }
     
+    // 2. my_converter 함수
+    static int[] my_converter(int[] prices, int N, int[] answer) {
+        
+        // 2-1. my_stack 객체 생성
+        my_stack stack_v1 = new my_stack(N);
+        
+        // 2-2. 길이 계산을 위해 stack에는 값이 아닌, idx를 저장하자 
+        // 각 가격 기준, stack의 last_idx 가격보다 작으면 stack.pop
+        // 그리고 arr[last_idx] = i - last_idx
+        
+        for (int i = 0; i < N; i++) {
+            int cur_price = prices[i];
+            
+            // 2-2-a. 스택이 비어있지않고 && prices[stack_v1.peek()] 가격보다 작으면 stack.pop
+            while (!stack_v1.isEmpty() && cur_price < prices[stack_v1.peek()]) {
+                int idx = stack_v1.pop();
+                answer[idx] = i - idx;
+                
+            }
+            // 2-2-b. stack에 현재 idx 추가
+            stack_v1.push(i);
+        }
+        
+        // 2-3. stack에 남은 idx 계산
+        while (!stack_v1.isEmpty()) {
+            int idx = stack_v1.pop();
+            System.out.println(idx);
+            answer[idx] = N - 1 - idx;
+        }
+        
+        
+        
+        
+        return answer;
+    }
     
-    // 4. stack 클래스
+    
+    // 3. my_stack 클래스
     static class my_stack {
         
-        // 4-1. 데이터 상태 정의
+        // 3-1. 데이터 상태 정의
         private int top;
         private int[] stack_v1;
         
-        // 4-2. 생성자
+        // 3-2. my_stack 생성자
         my_stack(int size) {
             top = -1;
             stack_v1 = new int[size];
         }
         
-        // 4-3. push
+        // 3-3. push
         void push(int value) {
             top++;
             stack_v1[top] = value;
         }
         
-        // 4-4. pop
+        // 3-4. pop
         int pop() {
             int value = stack_v1[top];
             top--;
             return value;
         }
         
-        // 4-5. peek
+        // 3-5. peek
         int peek() {
             int value = stack_v1[top];
             return value;
         }
         
-        // 4-6. isEmpty
+        // 3-6. isEmpty
         boolean isEmpty() {
             if (top != -1) return false;
             return true;
         }
         
-        // 4-7. size
+        // 3-7. size
         int size() {
             return top + 1;
         }
         
     }
-    
-    
     
 }
