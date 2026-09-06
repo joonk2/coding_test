@@ -1,60 +1,72 @@
 class Solution {
-    static int INF = Integer.MAX_VALUE;
-    
+    static int INF = 1000000;
     
     public int solution(int[][] info, int n, int m) {
+        int answer = 0;
         
-        // 1. B기준으로 각 A의 누적흔적 최소
-        int[] DP = new int[m];
-        
-        // 2. INF 로 초기화하고, 첫값은 0
-        for (int i = 0; i < m; i++) {
-            DP[i] = INF;
-        }
-        DP[0] = 0;
-        
-        // 3. 검사
-        for (int[] cur : info) {
-            int a_trace = cur[0];
-            int b_trace = cur[1];
-            
-            // 3-1. 다음 DP 생성하고, INF 초기화
-            int[] next_DP = new int[m];
-            for (int i = 0; i < m; i++) {
-                next_DP[i] = INF;
+        // 1. memoization + dfs
+        int[][] memo = new int[info.length][m];
+        for (int r = 0; r < info.length; r++) {
+            for (int c = 0; c < m; c++) {
+                memo[r][c] = -1;
             }
-            
-            
-            // 3-2. 최소값 갱신
-            for (int i = 0; i < m; i++) {
-                // 3-1. 만약 훔치는게 이어지지 못하면 skip
-                if (DP[i] == INF) continue;
-                
-                // 3-2. 그게 아니라면
-                
-                // 3-3. a흔적을 더 남길 수 있다면
-                if (DP[i] + a_trace < n) {
-                    next_DP[i] = Math.min(next_DP[i], DP[i] + a_trace);
-                }
-                
-                // 3-4. b흔적을 더 남길 수 있다면
-                if (i + b_trace < m) {
-                    next_DP[i + b_trace] = Math.min(next_DP[i + b_trace], DP[i]);
-                }
-            }
-            
-            // 4. 갱신
-            DP = next_DP;
         }
         
-        // 5-1. 출력 (음수처리)
-        int answer = INF;
-        for (int i = 0; i < m; i++) {
-            answer = Math.min(DP[i], answer);
-        }
-        if (answer == INF) return -1;
+        int idx = 0;
+        int cum_trace_B = 0;
+        answer = dfs(idx, cum_trace_B, info, memo, n, m);
         
-        // 5-2. 출력 (음수가 아닐때)
+        // 2-1. 못 도달하면 return -1
+        if (answer == INF) {
+            return -1;
+        }
+        
+        // 2-2. 도달하면 answer 반환
         return answer;
     }
+    
+    
+    
+    
+    // 3. dfs 함수
+    static int dfs(int idx, int cum_trace_B, int[][] info, int[][] memo, int n, int m) {
+        int min_A = INF;
+        
+        // 3-1. 모든 물건을 다 훔쳤으면?
+        if (idx == info.length) {
+            return 0;
+        }
+        
+        // 3-2. 이미 계산된 상태라면?
+        if (memo[idx][cum_trace_B] != -1) {
+            return memo[idx][cum_trace_B];
+        }
+        
+        // 3-3. 현재 물건의 흔적
+        int cur_trace_A = info[idx][0];
+        int cur_trace_B = info[idx][1];
+        
+        // 3-4. 현재 물건을 A가 훔친다
+        int res_A = dfs(idx+1, cum_trace_B, info, memo, n, m);
+        
+        if (res_A != INF && res_A + cur_trace_A < n) {
+            min_A = Math.min(min_A, res_A + cur_trace_A);
+        }
+        
+        
+        // 3-5. 현재 물건을 B가 훔친다
+        if (cum_trace_B + cur_trace_B < m) {
+            int res_B = dfs(idx+1, cum_trace_B + cur_trace_B, info, memo, n, m);
+            
+            min_A = Math.min(min_A, res_B);
+        }
+        
+        // 3-6. 현재 상태의 정답 저장
+        memo[idx][cum_trace_B] = min_A;
+        return min_A;
+        
+    }
+    
+    
+    
 }
