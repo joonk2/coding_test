@@ -1,8 +1,28 @@
+// O(30 * 30 * 30 * 30)
+// while true
+    // 1-1. boolean 블록이 제거될 것인가?
+    // 1-2. boolean[][] visited;
+    // 1-3. 최적화 (빈공간 메꿀 영역)
+    // bottom_r, sc, ec -> max(r+1), min(c, sc), max(c+1, ec)
+
+    // 2. 4개 블록을 고려해서 행, 열1칸씩 빼고 검사 (만약 다 같으면 true 처리)
+
+    // 3. 블록 제거될 것인가 == false -> break
+    
+    // 4. 블록 제거 될 것인가 == true 라면
+    // visited == true인 것들 '.'로 변환하고, cnt++
+    
+    // 5. 빈공간 메꾸기
+    // (시작열 ~ 끝열)에ㅓ bottom_r부터 탐색하는데 '.' 일때
+    // 그 좌푤르 기준으로 행은 idx-1부터 0까지 검사해서 알파벳이 나오면
+    // 서로 위치 교체하고 break
+
+
+
 class Solution {
     public int solution(int m, int n, String[] board) {
-        int answer = 0;
+        int cnt = 0;
         
-        // 1. 배열 생성 및 값 할당
         int row = m;
         int col = n;
         char[][] arr = new char[row][col];
@@ -14,30 +34,31 @@ class Solution {
             }
         }
         
-        // 2. 블록이 안지워졌다면 종료
+        
+        
+        // 1. 완전탐색 O(30 * 30 * 30 * 30)
         while (true) {
             boolean will_block_be_removed = false;
             boolean[][] visited = new boolean[row][col];
             
-            // 최적화 (맨밑에서부터 시작할 행)
-            // 시작 열 ~ 끝열
-            int bottom_r = -1;
+            // 1-1. 최적화 (빈공간 메꿀영역) 
+            int bottom_r = Integer.MIN_VALUE;
             int sc = Integer.MAX_VALUE;
             int ec = Integer.MIN_VALUE;
             
-            // 2-1. 완전탐색
+            // 1-2. 2*2블록을 고려해서 전체 행,열 범위 1칸 빼고 빼고 검사
             for (int r = 0; r < row-1; r++) {
                 for (int c = 0; c < col-1; c++) {
-                    // 2-2. 만약 .이면 넘어가기
+                    // 1-3. '.' 이면 넘어가기
                     if (arr[r][c] == '.') continue;
                     
-                    // 2-3. .이 아닐때
+                    // 1-4. 알파벳일때
                     char ch = arr[r][c];
                     char right = arr[r][c+1];
                     char diag = arr[r+1][c+1];
                     char down = arr[r+1][c];
                     
-                    // 2-4. 모두 같다면? -> true, 그리고 (블록은 지워질 것 = true)
+                    // 1-5. 만약 4개가 같다면 -> true처리, 빈공간 메꿀 영역 갱신
                     if (ch == right && right == diag && diag == down) {
                         visited[r][c] = true;
                         visited[r][c+1] = true;
@@ -45,34 +66,33 @@ class Solution {
                         visited[r+1][c] = true;
                         will_block_be_removed = true;
                         
-                        // 2-5. 갱신 (밑에서부터 시작할 행, 시작열, 끝열)
-                        bottom_r = Math.max(bottom_r, r+1);
+                        bottom_r = Math.max(r+1, bottom_r);
                         sc = Math.min(c, sc);
-                        ec = Math.max(ec, c+1);
+                        ec = Math.max(c+1, ec);
                     }
                 }
             }
             
-            // 2-6. 지울 블럭 없으면 break
+            // 1-3. 만약 블록이 제거 안될거라면? -> 종료
             if (!will_block_be_removed) break;
             
-            // 2-7. 지울 블럭이 있다면?
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {
-                    if (visited[i][j]) {
-                        arr[i][j] = '.';
-                        answer++;
+            // 1-4. 블록이 제거 가능하다면? -> true 좌표는 '.' 으로 변경
+            for (int r = 0; r < row ; r++) {
+                for (int c = 0; c < col; c++) {
+                    if (visited[r][c]) {
+                        arr[r][c] = '.';
+                        cnt++;
                     }
                 }
             }
             
-            // 3. 빈공간 메꾸기
+            // 1-5. 빈공간 메꾸기
             for (int cc = sc; cc < ec + 1; cc++) {
                 for (int cr = bottom_r; cr >= 0; cr--) {
-                    // 3-1. 빈공간일때
+                    // 1-6. 만약 '.' 이라면
                     if (arr[cr][cc] == '.') {
-                        // 3-2. 행 한칸 위에서부터 알파벳 찾으면 위치 바꾸고 종료
-                        int idx = cr-1;
+                        int idx = cr - 1;
+                        // 1-7. 위로 올라가면서 알파벳 나오면 위치 교환하고 break
                         while (idx >= 0) {
                             if (arr[idx][cc] != '.') {
                                 char temp = arr[idx][cc];
@@ -89,9 +109,8 @@ class Solution {
             
         }
         
-            
-            
         
-        return answer;
+        // 2. 결과 반환
+        return cnt;
     }
 }
