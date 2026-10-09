@@ -1,0 +1,46 @@
+import java.util.Arrays;
+
+
+class Solution {
+    public int[] solution(int[] progresses, int[] speeds) {
+        
+        // 1. 완료날짜 배열 생성
+        int N = speeds.length;
+        int[] arr = new int[N];
+        
+        for (int i = 0; i < N; i++) {
+            int diff = 100 - progresses[i];
+            int cur_val = (int) Math.ceil((double) diff / speeds[i] );
+            arr[i] = cur_val;
+        }
+        
+        // 2. 계산, 첫 값은 대입하고 시작
+        // 그리고 기준 완료일 설정
+        int[] answer = new int[100];
+        int idx = 0;
+        answer[idx]++;
+        int base_end_day = arr[idx];
+        for (int i = 1; i < N; i++) {
+            
+            // 2-1. 기준완료일이 현재일자보다 빨리 끝냈거나 같다면 완료arr에 추가
+            if (base_end_day >= arr[i]) answer[idx]++;
+            
+            // 2-2. 기준완료날짜보다 늦게 끝냈다면?
+            else if (base_end_day < arr[i]) {
+                idx++;
+                answer[idx]++;
+                base_end_day = arr[i];
+            }
+        }
+        
+        
+        // 3. 결과값 반환
+        int final_size = idx;
+        int[] final_arr = new int[idx + 1];
+        for (int i = 0; i < idx + 1; i++) {
+            final_arr[i] = answer[i];
+        }
+        
+        return final_arr;
+    }
+}
