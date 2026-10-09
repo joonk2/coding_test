@@ -1,41 +1,46 @@
+import java.util.Arrays;
+
+
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
         
-        // 1. 각 작업의 종료시간을 만들자
+        // 1. 완료날짜 배열 생성
         int N = speeds.length;
-        int[] answer = new int[N];
-        int[] end_time = new int[N];
+        int[] arr = new int[N];
+        
         for (int i = 0; i < N; i++) {
-            int cur_end_time = (int) Math.ceil( (100 - progresses[i]) / (double) speeds[i] );
-            end_time[i] = cur_end_time;
+            int diff = 100 - progresses[i];
+            int cur_val = (int) Math.ceil((double) diff / speeds[i] );
+            arr[i] = cur_val;
         }
         
-        // 2. 종료시간 배열 값 추가
-        // 우선 첫 값만 삽입
-        int size_idx = 0;
-        answer[size_idx]++;
-        int max_num = end_time[size_idx];
+        // 2. 계산, 첫 값은 대입하고 시작
+        // 그리고 기준 완료일 설정
+        int[] answer = new int[100];
+        int idx = 0;
+        answer[idx]++;
+        int base_end_day = arr[idx];
         for (int i = 1; i < N; i++) {
-            // 3. 이전값보다 작거나 같으면 삽입
-            if (end_time[i] <= max_num) {
-                answer[size_idx]++;
-            }
-            // 4. 크다면 가장 큰 수 갱신
-            else if (end_time[i] > max_num) {
-                max_num = end_time[i];
-                size_idx++;
-                answer[size_idx]++;
+            
+            // 2-1. 기준완료일이 현재일자보다 빨리 끝냈거나 같다면 완료arr에 추가
+            if (base_end_day >= arr[i]) answer[idx]++;
+            
+            // 2-2. 기준완료날짜보다 늦게 끝냈다면?
+            else if (base_end_day < arr[i]) {
+                idx++;
+                answer[idx]++;
+                base_end_day = arr[i];
             }
         }
         
-        // 5. 정답 배열
-        int[] res = new int[size_idx+1];
-        for (int i = 0; i < size_idx+1; i++) {
-            res[i] = answer[i];
+        
+        // 3. 결과값 반환
+        int final_size = idx;
+        int[] final_arr = new int[idx + 1];
+        for (int i = 0; i < idx + 1; i++) {
+            final_arr[i] = answer[i];
         }
         
-        System.out.println(size_idx);
-        
-        return res;
+        return final_arr;
     }
 }
