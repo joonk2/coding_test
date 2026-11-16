@@ -20,7 +20,7 @@ class Solution {
         int round = 1;
         
         // 3. while (남은 카드가 없을때까지 검사)
-        while (my_deck.size() != 0) {
+        while (idx < N) {
             
             // 3-1. 각 라운드 시작시 카드 2장 뽑기
             int first = cards[idx];

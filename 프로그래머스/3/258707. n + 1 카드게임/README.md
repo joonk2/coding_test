@@ -128,8 +128,8 @@
 | Status | Accepted |
 | Language | Java |
 | Runtime | 0.03 ms |
-| Memory | 79.8 MB |
-| Submitted At | 2026년 11월 16일 22:18:20 |
+| Memory | 73.8 MB |
+| Submitted At | 2026년 11월 16일 22:31:03 |
 
 ### Result Summary
 
