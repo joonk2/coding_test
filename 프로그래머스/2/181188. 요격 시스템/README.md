@@ -60,9 +60,9 @@ A 나라와 B 나라가 싸우고 있는 이 세계는 2 차원 공간으로 이
 | --- | --- |
 | Status | Accepted |
 | Language | Java |
-| Runtime | 0.32 ms |
-| Memory | 67.2 MB |
-| Submitted At | 2026년 11월 08일 23:23:46 |
+| Runtime | 0.39 ms |
+| Memory | 74.9 MB |
+| Submitted At | 2026년 11월 17일 14:06:32 |
 
 ### Result Summary
 
