@@ -108,9 +108,9 @@
 | --- | --- |
 | Status | Accepted |
 | Language | Java |
-| Runtime | 1.14 ms |
+| Runtime | 0.96 ms |
 | Memory | 76.7 MB |
-| Submitted At | 2026년 11월 23일 15:44:41 |
+| Submitted At | 2026년 11월 23일 15:47:00 |
 
 ### Result Summary
 

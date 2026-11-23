@@ -1,6 +1,7 @@
 import java.util.Queue;
 import java.util.ArrayDeque;
 
+
 class Solution {
     static int answer;
     
@@ -10,7 +11,7 @@ class Solution {
         // 1. 계산
         my_solver(points, routes);
         
-        // 6. 반환
+        // 5. 반환
         return answer;
     }
     
@@ -122,7 +123,7 @@ class Solution {
         }
         
         
-        // 5. 종료
+        // 4. 종료
         return;
  
     }
