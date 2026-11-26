@@ -136,7 +136,9 @@ class Solution {
         if (idx % 2 == 0) {
             for (int r = 0; r < 3; r++) {
                 for (int c = 0; c < 3; c++) {
-                    if (my_arr[r][c] != '.') continue;
+                    
+                    // 4-4-a. 최적화 (빈칸이 안비었고, 결과배열과 다르면 pass -> 백트랙킹 안함)
+                    if (my_arr[r][c] != '.' || res_arr[r][c] != 'O') continue;
                     my_arr[r][c] = 'O';
                     int[] pos = new int[] {r, c};
                     my_o.add(pos);
@@ -149,7 +151,8 @@ class Solution {
         else if (idx % 2 == 1) {
             for (int r = 0; r < 3; r++) {
                 for (int c = 0; c < 3; c++) {
-                    if (my_arr[r][c] != '.') continue;
+                    // 4-4-b. 최적화 (빈칸이 안비었고, 결과배열과 다르면 pass -> 백트랙킹 안함)
+                    if (my_arr[r][c] != '.' || res_arr[r][c] != 'X') continue;
                     my_arr[r][c] = 'X';
                     int[] pos = new int[] {r, c};
                     my_x.add(pos);
